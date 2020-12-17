@@ -1,13 +1,13 @@
 {
   "title": "infinity Testnet Explorer",
-  "server": "http://134.122.119.115:4003/api/v2",
+  "server": "http://159.65.199.136:4003/api/v2",
   "alias": "Testnet local",
   "activeDelegates": "25",
-  "rewardOffset": "1",
+  "rewardOffset": "1000000",
   "currencies": [],
   "knownWallets": {},
   "defaults": {
-    "token": "INF",
+    "token": "INFI",
     "symbol": "∞",
     "currency": null,
     "priceChartOptions": {
