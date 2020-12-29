@@ -256,7 +256,7 @@ export default class App extends Vue {
       this.updateSupply();
       this.updateHeight();
       this.updateDelegates();
-    }, 8 * 1000);
+    }, 4 * 1000);
 
     this.curTimer = setInterval(() => {
       this.getCur();
