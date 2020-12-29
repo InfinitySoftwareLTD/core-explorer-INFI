@@ -1,6 +1,6 @@
 NETWORK="$1"
 if [ -z "$NETWORK" ]; then
-    NETWORK="testnet"
+    NETWORK="mainnet"
 fi
-HOST="159.65.199.136" PORT="4200" yarn build:"$NETWORK"
-EXPLORER_HOST="159.65.199.136" EXPLORER_PORT="4200" pm2 start /home/lionel/core-explorer/express-server.js --name explorer
+HOST="142.93.106.212" PORT="4200" yarn build:"$NETWORK"
+EXPLORER_HOST="142.93.106.212" EXPLORER_PORT="4200" pm2 start /home/YOUR_NAME/core-explorer-INFI/express-server.js --name explorer
