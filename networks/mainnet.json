@@ -1,6 +1,6 @@
 {
   "title": "infinity Mainnet Explorer",
-  "server": "http://159.65.199.136:4003/api/v2",
+  "server": "https://api.infinitysolutions.io/api/v2",
   "alias": "Main",
   "activeDelegates": "25",
   "rewardOffset": "1000000",
