@@ -1,7 +1,7 @@
 import { ITransactionType } from "@/interfaces";
 import { CoreTransaction, MagistrateTransaction, TypeGroupTransaction } from "@/enums";
 
-export const URI_QRCODE_SCHEME_PREFIX = "ark:";
+export const URI_QRCODE_SCHEME_PREFIX = "infi:";
 
 export const transactionTypes: ITransactionType[] = [
   { key: "ALL", type: -1 },
