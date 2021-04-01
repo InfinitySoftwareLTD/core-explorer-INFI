@@ -123,7 +123,8 @@ export default {
         LAST_BLOCK: "Ultimo blocco",
         FORGED: "Forgiato",
         TOTAL_FORGED: "Totale forgiato ({token})",
-        TX_COUNT: "di 0 transazioni | di 1 transazione | di {count} transazioni",
+        TX_COUNT:
+          "di 0 transazioni | di 1 transazione | di {count} transazioni",
       },
       ACTIVE: "Attivo",
       STANDBY: "In attesa",
@@ -153,7 +154,8 @@ export default {
     NOT_FOUND: {
       TITLE: "Ooops!",
       PAGE: "Spiacente, pagina non trovata",
-      DATA: "Spiacente, {dataType} {dataId} non può essere trovato nella blockchain",
+      DATA:
+        "Spiacente, {dataType} {dataId} non può essere trovato nella blockchain",
     },
   },
 
@@ -179,6 +181,7 @@ export default {
     DEVELOPMENT: "Sviluppo",
     SUPPLY: "Distribuzione",
     MARKET_CAP: "Capitalizzazione di mercato",
+    TESTNET: "Testnet",
   },
 
   FOOTER: {

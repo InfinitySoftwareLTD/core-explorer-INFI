@@ -72,7 +72,7 @@ export default class App extends Vue {
       nightModeBoolean = network.alias === "Development";
     }
 
-    this.$store.dispatch("ui/setNightMode", nightModeBoolean);
+    this.$store.dispatch("ui/setNightMode", this.nightMode);
 
     this.$store.dispatch("network/setDefaults", network.defaults);
 
@@ -193,10 +193,14 @@ export default class App extends Vue {
   }
 
   public async getCur(){
+    try {
     const supply = await BlockchainService.supply();
     const balance = await BlockchainService.cur();
-    const curincir = parseInt(supply) - balance;
+    const curincir = await Math.floor(Number(supply)) - await Math.floor(Number(balance)); //jelmar change
     this.$store.dispatch("network/setCur", curincir);
+    } catch (error) {
+      
+    }
   }
 
   public async updateHeight() {

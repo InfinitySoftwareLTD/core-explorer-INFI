@@ -13,6 +13,7 @@ const state: ICurrencyState = {
     timestamp: 1,
     rate: 1,
   },
+  currentRate: 0.01,
 };
 
 const actions: ActionTree<ICurrencyState, {}> = {
@@ -40,7 +41,10 @@ const actions: ActionTree<ICurrencyState, {}> = {
       value,
     });
   },
-  setLastConversion: ({ commit }, value: { to: string; timestamp: number; rate: number }) => {
+  setLastConversion: (
+    { commit },
+    value: { to: string; timestamp: number; rate: number }
+  ) => {
     let rates = JSON.parse(localStorage.getItem(`rates_${value.to}`) as string);
 
     rates = rates || {};
@@ -50,6 +54,12 @@ const actions: ActionTree<ICurrencyState, {}> = {
 
     commit({
       type: types.SET_CURRENCY_LAST_CONVERSION,
+      value,
+    });
+  },
+  setCurrentRate: ({ commit }, value: number) => {
+    commit({
+      type: types.SET_CURRENCYRATE,
       value,
     });
   },
@@ -68,6 +78,9 @@ const mutations: MutationTree<ICurrencyState> = {
   [types.SET_CURRENCY_LAST_CONVERSION](state, payload: IStorePayload) {
     state.lastConversion = payload.value;
   },
+  [types.SET_CURRENCYRATE](state, payload: IStorePayload) {
+    state.currentRate = payload.value;
+  },
 };
 
 const getters: GetterTree<ICurrencyState, {}> = {
@@ -75,6 +88,7 @@ const getters: GetterTree<ICurrencyState, {}> = {
   rate: (state) => state.rate,
   symbol: (state) => state.symbol,
   lastConversion: (state) => state.lastConversion,
+  currentRate: (state) => state.currentRate,
 };
 
 export const currency: Module<ICurrencyState, {}> = {

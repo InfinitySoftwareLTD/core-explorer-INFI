@@ -123,7 +123,8 @@ export default {
         LAST_BLOCK: "Dernier bloc",
         FORGED: "Forgé",
         TOTAL_FORGED: "Total forgé ({token})",
-        TX_COUNT: "de 0 transactions | de 1 transaction | de {count} transactions",
+        TX_COUNT:
+          "de 0 transactions | de 1 transaction | de {count} transactions",
       },
       ACTIVE: "Actif",
       STANDBY: "En attente",
@@ -179,6 +180,7 @@ export default {
     DEVELOPMENT: "Développement",
     SUPPLY: "Stock",
     MARKET_CAP: "Capitalisation",
+    TESTNET: "Testnet",
   },
 
   FOOTER: {

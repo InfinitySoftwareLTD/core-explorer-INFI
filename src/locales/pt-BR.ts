@@ -179,6 +179,7 @@ export default {
     DEVELOPMENT: "Desenvolvimento",
     SUPPLY: "Distribuição",
     MARKET_CAP: "Valor de mercado",
+    TESTNET: "Testnet",
   },
 
   FOOTER: {

@@ -123,7 +123,8 @@ export default {
         LAST_BLOCK: "Laatste block",
         FORGED: "Geforged",
         TOTAL_FORGED: "Totaal geforged ({token})",
-        TX_COUNT: "van 0 transacties | van 1 transactie | van {count} transacties",
+        TX_COUNT:
+          "van 0 transacties | van 1 transactie | van {count} transacties",
       },
       ACTIVE: "Actief",
       STANDBY: "Standby",
@@ -153,7 +154,8 @@ export default {
     NOT_FOUND: {
       TITLE: "Ooops!",
       PAGE: "Sorry, pagina niet gevonden",
-      DATA: "Sorry, {dataType} {dataId} kon niet worden gevonden op de blockchain",
+      DATA:
+        "Sorry, {dataType} {dataId} kon niet worden gevonden op de blockchain",
     },
   },
 
@@ -179,6 +181,7 @@ export default {
     DEVELOPMENT: "Ontwikkeling",
     SUPPLY: "Voorraad",
     MARKET_CAP: "Market Cap",
+    TESTNET: "Testnet",
   },
 
   FOOTER: {

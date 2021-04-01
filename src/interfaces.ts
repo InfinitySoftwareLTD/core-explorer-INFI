@@ -212,6 +212,7 @@ export interface ICurrencyState {
     timestamp: number;
     rate: number;
   };
+  currentRate: number;
 }
 
 export interface IDelegateState {

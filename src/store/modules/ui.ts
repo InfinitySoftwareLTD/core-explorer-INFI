@@ -7,7 +7,7 @@ const namespaced = true;
 const state: IUiState = {
   language: "en-GB",
   locale: navigator.language || "en-GB",
-  nightMode: false,
+  nightMode: true,
   priceChartOptions: {
     enabled: true,
     period: "day",

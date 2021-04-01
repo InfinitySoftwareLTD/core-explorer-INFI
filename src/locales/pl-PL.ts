@@ -179,6 +179,7 @@ export default {
     DEVELOPMENT: "Deweloperska",
     SUPPLY: "Zasoby",
     MARKET_CAP: "Kapitalizacja rynkowa",
+    TESTNET: "Testnet",
   },
 
   FOOTER: {

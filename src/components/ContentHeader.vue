@@ -12,9 +12,10 @@
         <div class="pr-6">
           {{ $t("HEADER.SUPPLY") }}: <span class="whitespace-no-wrap">{{ readableCrypto(supply, true, 0) }}</span>
         </div>
-        <div :class="{ 'pr-6': showMarketCap }">{{ $t("HEADER.CURRENCYINCIRC") }}: {{ readableCrypto(cur, true, 0) }}</div>
+        <div :class="{ 'pr-6': showMarketCap }">{{ $t("HEADER.CURRENCYINCIRC") }}: {{ readableCrypto(cur, true, 2) }}</div>
         <div v-if="showMarketCap">
-          {{ $t("HEADER.MARKET_CAP") }}: <span class="whitespace-no-wrap">{{ readableCurrency(supply) }}</span>
+           {{ $t("HEADER.MARKET_CAP") }}: <span class="whitespace-no-wrap">{{ readableCurrency(cur, currentRate ) }}</span
+          ><!-- jelmar Change -->
         </div>
       </div>
     </div>
@@ -44,7 +45,7 @@ import { mapGetters } from "vuex";
 @Component({
   computed: {
     ...mapGetters("network", ["alias", "supply", "height", "isListed", "token", "cur"]),
-    ...mapGetters("currency", ["name", "rate", "symbol"]),
+    ...mapGetters("currency", ["name", "rate", "symbol", "currentRate"]),
   },
 })
 export default class ContentHeader extends Vue {

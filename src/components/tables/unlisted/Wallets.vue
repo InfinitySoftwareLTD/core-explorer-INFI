@@ -17,7 +17,8 @@
 
         <div v-else-if="data.column.field === 'balance'">
           <span>
-            {{ readableCrypto(data.row.balance, true, truncateBalance ? 2 : 8) }}
+            <!-- jelmar change -->
+             {{data.row.balance == 0 ? 0 : readableCrypto(data.row.balance, true, truncateBalance ? 2 : 8) }}
           </span>
         </div>
       </template>
