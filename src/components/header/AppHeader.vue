@@ -1,5 +1,6 @@
 <template>
-  <header v-click-outside="closeHeader" class="AppHeader min-h-50px md:min-h-80px mb-5 sm:mb-10 xl:rounded-md">
+<div>
+  <header v-click-outside="closeHeader" class="AppHeader min-h-50px md:min-h-80px mb-5 xl:rounded-md">
     <RouterLink
       :to="{ name: 'home' }"
       class="logo-container w-50px md:w-80px h-50px md:h-80px flex-none bg-theme-accents text-2xl xl:rounded-l-md flex justify-center items-center"
@@ -24,6 +25,21 @@
     <HeaderCurrenciesMobile v-else-if="headerType === 'currencies'" />
     <HeaderLanguagesMobile v-else-if="headerType === 'languages'" />
   </header>
+   <div class="max-w-2xl mx-auto">
+  <div class="flex justify-between flex-wrap px-5 sm:px-10 xl:px-0">
+      <h1 class="text-theme-text-content font-normal text-base md:text-lg mt-2 sm:mr-5"> 
+        <!-- jelmar change -->
+        Stable Coin Infinity
+      </h1>
+   </div>
+     <RouterLink
+      :to="{ name: 'home' }"
+      class="logo-container float-right sm:mr-2 md:mr-10 lg:mr-11 mr-11 xl:-mt-14px lg:-mt-14px sm:-mt-4 md:-mt-14px w-50px md:w-120px h-50px md:h-80px bg-sidelogo text-2xl xl:rounded-l-md  justify-center items-center xs:mr-3 xs:-mt-4"
+    >
+      <img class="logo max-w35px md:max-w-35px" src="@/assets/images/sidelogo.png" />
+    </RouterLink> 
+ </div>
+</div>
 </template>
 
 <script lang="ts">
@@ -87,5 +103,11 @@ export default class AppHeader extends Vue {
 <style scoped>
 .AppHeader {
   @apply .flex .sticky .top-0 .z-50 .max-w-2xl .mx-auto .bg-theme-nav-background .shadow-theme;
+}
+.text-theme-text-content {
+    color: var(--color-theme-text-content);
+}
+.bg-sidelogo {
+    background-color: #15151500;
 }
 </style>

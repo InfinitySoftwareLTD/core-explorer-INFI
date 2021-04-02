@@ -1,7 +1,12 @@
 module.exports = {
   purge: {
     enabled: process.env.NODE_ENV === "production",
-    content: ["./public/index.html", "./src/**/*.vue", "./src/**/*.js", "./src/**/*.ts"],
+    content: [
+      "./public/index.html",
+      "./src/**/*.vue",
+      "./src/**/*.js",
+      "./src/**/*.ts",
+    ],
     defaultExtractor: (content) => {
       const broadMatches = content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || [];
       const innerMatches = content.match(/[^<>"'`\s.()]*[^<>"'`\s.():]/g) || [];
@@ -30,6 +35,7 @@ module.exports = {
   },
   theme: {
     screens: {
+      xs: "320px",
       sm: "576px",
       md: "768px",
       lg: "1024px",
@@ -76,7 +82,8 @@ module.exports = {
       transparent: "transparent",
       "table-row": "var(--color-theme-table-row)",
       "theme-page-background": "var(--color-theme-page-background-primary)",
-      "theme-content-background": "var(--color-theme-content-background-primary)",
+      "theme-content-background":
+        "var(--color-theme-content-background-primary)",
       "theme-feature-background": "var(--color-theme-feature-background)",
       "theme-text-primary": "var(--color-theme-text-primary)",
       "theme-text-secondary": "var(--color-theme-text-secondary)",
@@ -226,7 +233,14 @@ module.exports = {
         "Georgia",
         "serif",
       ],
-      mono: ["Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"],
+      mono: [
+        "Menlo",
+        "Monaco",
+        "Consolas",
+        "Liberation Mono",
+        "Courier New",
+        "monospace",
+      ],
     },
 
     fontSize: {
@@ -302,6 +316,9 @@ module.exports = {
       "8": "1.875rem", // 30px
       "9": "2.5rem", // 40px
       "10": "3.125rem", // 50px
+      "11": "5.75rem",
+      "12": "7.75rem",
+      "14px": "14px",
       "-px": "-1px",
       "-1": "-0.25rem",
       "-2": "-0.5rem",
@@ -312,6 +329,9 @@ module.exports = {
       "-8": "-1.875rem", // 30px
       "-9": "-2.5rem", // 40px
       "-10": "-3.125rem", // 50px
+      "-11": "-5.75rem",
+      "-12": "-7.75rem",
+      "-14px": "-14px",
     },
 
     maxHeight: {
@@ -401,6 +421,7 @@ module.exports = {
       "38px": "38px",
       "50px": "50px",
       "80px": "80px",
+      "120px": "120px",
       full: "100%",
       screen: "100vw",
     },

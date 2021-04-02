@@ -1,23 +1,25 @@
 <template>
   <div>
-    <div class="flex justify-between flex-wrap px-5 sm:px-10 xl:px-0">
+    <div class="flex flex-col justify-between flex-wrap px-5 sm:px-10 xl:px-0">
       <h1 class="text-2xl md:text-3xl mb-5 md:mb-6 text-theme-text-primary sm:mr-5">
         <slot />
       </h1>
-      <div
-        class="hidden sm:flex items-center text-theme-text-tertiary text-xs px-3 sm:px-8 xl:px-6 py-3 mb-5 md:mb-6 bg-stat-background rounded-md"
+     <div
+        class="hidden sm:flex"
       >
+      <div class="hidden sm:flex items-center text-theme-text-tertiary text-xs px-3 sm:px-8 xl:px-6 py-3 mb-5 md:mb-6 rounded-md bg-stat-background">
         <div class="pr-6">{{ $t("COMMON.HEIGHT") }}: {{ readableNumber(height) }}</div>
         <div class="pr-6">{{ $t("HEADER.NETWORK") }}: {{ $t(`HEADER.${alias.replace(" ", "_").toUpperCase()}`) }}</div>
-        <div class="pr-6">
+        <!-- <div class="pr-6">
           {{ $t("HEADER.SUPPLY") }}: <span class="whitespace-no-wrap">{{ readableCrypto(supply, true, 0) }}</span>
-        </div>
+        </div> -->
         <div :class="{ 'pr-6': showMarketCap }">{{ $t("HEADER.CURRENCYINCIRC") }}: {{ readableCrypto(cur, true, 2) }}</div>
         <div v-if="showMarketCap">
            {{ $t("HEADER.MARKET_CAP") }}: <span class="whitespace-no-wrap">{{ readableCurrency(cur, currentRate ) }}</span
           ><!-- jelmar Change -->
         </div>
       </div>
+     </div>
     </div>
     <div
       class="sm:hidden flex items-center justify-between text-theme-text-tertiary text-xs px-5 sm:px-8 xl:px-6 py-3 bg-stat-background"
