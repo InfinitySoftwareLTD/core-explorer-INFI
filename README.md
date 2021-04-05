@@ -19,7 +19,7 @@ You can access it at [https://infinitysolutions.io/](https://infinitysolutions.i
 
 ```bash
 git clone https://github.com/InfinitySoftwareLTD/core-explorer-INFI
-cd core-explorer
+cd core-explorer-INFI
 ```
 
 ### 2. Install Dependencies
