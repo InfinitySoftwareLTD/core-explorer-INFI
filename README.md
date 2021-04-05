@@ -18,7 +18,7 @@ You can access it at [https://infinitysolutions.io/](https://infinitysolutions.i
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/Plusid/core-explorer-INFI
+git clone https://github.com/InfinitySoftwareLTD/core-explorer-INFI
 cd core-explorer
 ```
 
