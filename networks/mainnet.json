@@ -3,7 +3,6 @@
   "server": "https://api.infinitysolutions.io/api/v2",
   "alias": "Main",
   "activeDelegates": "25",
-  "rewardOffset": "1000000",
   "currencies": [],
   "defaults": {
     "token": "INFI",
