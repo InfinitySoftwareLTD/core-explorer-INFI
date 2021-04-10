@@ -42,6 +42,7 @@ Component.registerHooks(["beforeRouteEnter", "beforeRouteUpdate"]);
   },
 })
 export default class TopWallets extends Vue {
+ 
   get showPagination() {
     return this.meta && this.meta.pageCount > 1;
   }
@@ -59,10 +60,10 @@ export default class TopWallets extends Vue {
   private wallets: IWallet[] | null = null;
   private unlistedwallets: IWallet[] | null = null;
   private meta: any | null = null;
-  private hasUnlisted: string = '0';
+  private hasUnlisted = '0';
   private currentPage = 0;
   private supply: string;
-  private toggleUnlisted: boolean = false;
+  private toggleUnlisted = false;
 
   @Watch("currentPage")
   public onCurrentPageChanged() {
@@ -81,6 +82,7 @@ export default class TopWallets extends Vue {
         vm.setUnlisted(hasUnlisted);
       });
     } catch (e) {
+      console.log(e);
       next({ name: "404" });
     }
   }
@@ -101,6 +103,7 @@ export default class TopWallets extends Vue {
       this.setUnlisted(hasUnlisted);
       next();
     } catch (e) {
+      console.log(e);
       next({ name: "404" });
     }
   }
