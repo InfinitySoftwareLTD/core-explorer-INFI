@@ -25,6 +25,7 @@ cd core-explorer-INFI
 ### 2. Install Dependencies
 
 ```bash
+npx browserslist@latest --update-db
 yarn install
 ```
 
