@@ -9,6 +9,7 @@
       >
         {{ knownWallets[address] }}
       </span>
+      
       <SvgIcon
         v-tooltip="{
           content: $t('WALLET.VERIFIED'),
