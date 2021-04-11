@@ -12,17 +12,6 @@
 You can access it at [https://explorer.infinitysolutions.io/](https://explorer.infinitysolutions.io/).
 
 
-# Infinity Explorer 1.0
-
-<p align="center">
-    <img src="/InfinityExplorer.png" />
-</p>
-
-> Designed and developed from the ground-up, using lean & fast developmental frameworks (Tailwind CSS & Vue.JS).
-
-
-You can access it at [https://explorer.hedge.infinitysolutions.io/](https://explorer.hedge.infinitysolutions.io/).
-
 ## Build Setup
 
 ### 1. Clone the repository and Install Dependencies
