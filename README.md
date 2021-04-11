@@ -96,7 +96,7 @@ yarn serve --env.routerMode=history
 
 ### 5. Commands
 
-<details><summary>Configuration forger</summary>
+<details><summary>Commands</summary>
 
 ```bash
 # status
@@ -107,11 +107,6 @@ pm2 start explorer
 
 # Stop Explorer
 pm2 stop explorer
-```
-## Testing
-
-```bash
-$ yarn test
 ```
 
 ## Contributing
