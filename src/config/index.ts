@@ -6,13 +6,13 @@ export const I18N = {
 export const brand = {
   footer: {
     url: "https://www.infinitysoftware.io",
-    text: "infinity",
+    text: "infinity developers",
   },
 };
 
 export const knownWalletsUrls = {
-  mainnet: "https://raw.githubusercontent.com/ArkEcosystem/common/master/mainnet/known-wallets.json",
-  devnet: "https://raw.githubusercontent.com/ArkEcosystem/common/master/devnet/known-wallets.json",
+  mainnet: "https://raw.githubusercontent.com/InfinitySoftwareLTD/common/main/known-wallets/INFI/mainnet/known-wallets.json",
+  devnet: "https://raw.githubusercontent.com/InfinitySoftwareLTD/common/main/INFI/devnet/known-wallets.json",
 };
 
 export const socialMedia = [

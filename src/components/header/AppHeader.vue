@@ -29,7 +29,7 @@
   <div class="flex justify-between flex-wrap px-5 sm:px-10 xl:px-0">
       <h1 class="text-theme-text-content font-normal text-base md:text-lg mt-2 sm:mr-5"> 
         <!-- jelmar change -->
-        Stable Coin Infinity
+        Infinity Smart Contract Call Option
       </h1>
    </div>
      <RouterLink

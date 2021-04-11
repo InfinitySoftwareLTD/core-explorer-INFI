@@ -23,7 +23,7 @@ class ApiService {
   public async getUnlisted() {
     //jelmar changed
     const response = await axios.get(
-      "https://raw.githubusercontent.com/InfinitySoftwareLTD/uncirculating/master/INFI"
+      "https://raw.githubusercontent.com/InfinitySoftwareLTD/common/main/uncirculating/INFI"
     );
     return response.data;
   }

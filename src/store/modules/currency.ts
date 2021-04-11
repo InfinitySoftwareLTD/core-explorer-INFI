@@ -5,9 +5,9 @@ import { ActionTree, GetterTree, Module, MutationTree } from "vuex";
 
 const namespaced = true;
 const state: ICurrencyState = {
-  name: "ARK",
-  rate: 1,
-  symbol: "Ѧ",
+  name: "USD",
+  rate: 0.01,
+  symbol: "$",
   lastConversion: {
     to: "USD",
     timestamp: 1,
