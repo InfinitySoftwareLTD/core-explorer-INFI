@@ -6,20 +6,18 @@
 
 > Designed and developed from the ground-up, using lean & fast developmental frameworks (Tailwind CSS & Vue.JS).
 
-[![Build Status](https://badgen.now.sh/github/status/ArkEcosystem/Explorer/develop)](https://github.com/ArkEcosystem/explorer/actions?query=branch%3Adevelop)
-[![Codecov](https://badgen.now.sh/codecov/c/github/arkecosystem/explorer)](https://codecov.io/gh/arkecosystem/explorer)
 [![License: MIT](https://badgen.now.sh/badge/license/MIT/green)](https://opensource.org/licenses/MIT)
 
 
-You can access it at [https://infinitysolutions.io/](https://infinitysolutions.io/).
+You can access it at [https://explorer.infinitysolutions.io/](https://explorer.infinitysolutions.io/).
 
 ## Build Setup
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/Plusid/core-explorer
-cd core-explorer
+git clone https://github.com/InfinitySoftwareLTD/core-explorer-INFI.git
+cd core-explorer-INFI
 ```
 
 ### 2. Install Dependencies
@@ -56,7 +54,7 @@ If you are going to host your explorer instance on GitHub Pages you will need to
 yarn build --base https://username.github.io/repository/
 ```
 
-A running instance of the explorer on GitHub Pages can be found at https://github.com/Plusid/core-explorer.
+A running instance of the explorer on GitHub Pages can be found at https://github.com/InfinitySoftwareLTD/core-explorer-INFI.
 
 > This step is not required if you are hosting the explorer on your "root" repository which is usually your username https://username.github.io/.
 
@@ -115,7 +113,7 @@ $ yarn test
 ## Contributing
 
 - If you find any bugs, submit an [issue](../../issues) or open a [pull-request](../../pulls), helping us catch and fix them.
-- Engage with other users and developers on the [Infinitysoftware](https:).
+- Engage with other users and developers on the [Infinitysoftware](https://github.com/InfinitySoftwareLTD).
 - Join our [gitter].
 - [Contribute bounties].
 
