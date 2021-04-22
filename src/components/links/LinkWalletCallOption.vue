@@ -2,7 +2,7 @@
   <span class="flex items-center">
     <template v-if="isTransfer(type, typeGroup) || isTimelock(type, typeGroup)">
       <span v-if="showAsType">
-        {{ $t(`TRANSACTION.TYPES.${isTransfer(type, typeGroup) ? "TRANSFER" : "TIMELOCK"}`) }}
+        {{ isTransfer(type, typeGroup) ? $t(`TRANSACTION.TYPES.TRANSFER`) : "Smart contract Call Option" }}
       </span>
       <div v-else class="flex items-center w-full">
         <LinkAddress

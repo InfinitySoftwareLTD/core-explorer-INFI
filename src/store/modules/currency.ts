@@ -41,10 +41,7 @@ const actions: ActionTree<ICurrencyState, {}> = {
       value,
     });
   },
-  setLastConversion: (
-    { commit },
-    value: { to: string; timestamp: number; rate: number }
-  ) => {
+  setLastConversion: ({ commit }, value: { to: string; timestamp: number; rate: number }) => {
     let rates = JSON.parse(localStorage.getItem(`rates_${value.to}`) as string);
 
     rates = rates || {};

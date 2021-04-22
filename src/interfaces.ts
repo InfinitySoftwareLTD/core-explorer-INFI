@@ -98,6 +98,35 @@ export interface ITransaction {
   price?: number | null;
   nonce?: string;
   lockStatus?: number;
+  tx_claim_id: number;
+  call_option_id: string;
+  statuscallOption: string;
+}
+
+export interface ITransactionCallOption {
+  id: string;
+  amount: number;
+  api_timestamp: ITimestamp;
+  breakeven: string;
+  buyer_address: string;
+  call_option_id: string;
+  coins_per_contract: number;
+  expiration: ITimestamp;
+  hash: string;
+  memo: string;
+  network_fee: string;
+  oco_id: number;
+  premium: number;
+  recipient_address: string;
+  seller_address: string;
+  sender_address: string;
+  status: string;
+  strike: number;
+  timestamp: ITimestamp;
+  total_amount: number;
+  tx_claim_id: number;
+  tx_lock_id: string;
+  type: number;
 }
 
 export interface ISortParameters {
@@ -177,6 +206,10 @@ export interface IApiLockWrapper {
 export interface IApiLocksWrapper {
   data: ILock[];
   meta: IMeta;
+}
+
+export interface IApiTransactionCallOptionWrapper {
+  data: ITransactionCallOption;
 }
 
 export interface IApiTransactionWrapper {
