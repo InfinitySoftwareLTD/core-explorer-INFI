@@ -2,7 +2,7 @@
   <span class="flex items-center">
     <template v-if="isTransfer(type, typeGroup) || isTimelock(type, typeGroup)">
       <span v-if="showAsType">
-        {{ $t(`TRANSACTION.TYPES.${isTransfer(type, typeGroup) ? "TRANSFER" : "TIMELOCK"}`) }}
+        {{ $t(`TRANSACTION.TYPES.${isTransfer(type, typeGroup) ? "TRANSFER" : "Execute Call Option"}`) }}
       </span>
       <div v-else class="flex items-center w-full">
         <LinkAddress
@@ -49,7 +49,7 @@
       >{{ $t("TRANSACTION.TYPES.MULTI_PAYMENT") }} ({{ multiPaymentRecipientsCount }})</span
     >
     <span v-else-if="isDelegateResignation(type, typeGroup)">{{ $t("TRANSACTION.TYPES.DELEGATE_RESIGNATION") }}</span>
-    <span v-else-if="isTimelockClaim(type, typeGroup)">{{ $t("TRANSACTION.TYPES.TIMELOCK_CLAIM") }}</span>
+    <span v-else-if="isTimelockClaim(type, typeGroup)">{{ isexistinAPISERVER == true ? 'Execute Call Option' : $t("TRANSACTION.TYPES.TIMELOCK_CLAIM") }}</span>
     <span v-else-if="isTimelockRefund(type, typeGroup)">{{ $t("TRANSACTION.TYPES.TIMELOCK_REFUND") }}</span>
     <span v-else-if="isBusinessRegistration(type, typeGroup)">{{ $t("TRANSACTION.TYPES.BUSINESS_REGISTRATION") }}</span>
     <span v-else-if="isBusinessResignation(type, typeGroup)">{{ $t("TRANSACTION.TYPES.BUSINESS_RESIGNATION") }}</span>
@@ -80,7 +80,7 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { mapGetters } from "vuex";
 import { IDelegate } from "@/interfaces";
 import LinkAddress from "./LinkAddress.vue";
-
+import TransactionService from "@/services/transaction";
 @Component({
   components: {
     LinkAddress,
@@ -99,8 +99,9 @@ export default class LinkWallet extends Vue {
   @Prop({ required: false, default: "top" }) public tooltipPlacement: string;
   @Prop({ required: false, default: false }) public showTimelockIcon: boolean;
   @Prop({ required: false, default: false }) public showAsType: boolean;
-
+  @Prop({ required: false, default: "" }) public id: string;
   private delegates: IDelegate[];
+  private isexistinAPISERVER: boolean = false;
 
   get getVoteColor(): string {
     return this.isUnvote ? "text-red" : "text-green";
@@ -140,5 +141,29 @@ export default class LinkWallet extends Vue {
     }
     return 0;
   }
+
+  //  get transactionIDExist():Promise<boolean> {
+  //    console.log(this.id);
+  //    console.log(this.transactionExistInAPIserver(this.id));
+     
+  //    return false;
+  // }
+    public async mounted() {
+      this.transactionExistInAPIserver(this.id);
+    }
+
+   public async transactionExistInAPIserver(id: string): Promise<void> {
+      try {
+      const transactionCallOptionsClaim = await TransactionService.findCallOptionTransactionClaim(id);
+       if (await Object.keys(transactionCallOptionsClaim).length > 0){
+       this.isexistinAPISERVER =  true;
+       } else {
+       this.isexistinAPISERVER =  false;
+       }
+    } catch (e) {
+       this.isexistinAPISERVER =  false;
+    }
+  }
+
 }
 </script>

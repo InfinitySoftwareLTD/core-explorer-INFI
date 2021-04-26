@@ -36,7 +36,8 @@
         </div>
       </section>
 
-      <TransactionDetailsCallOption v-if="countCallOptionLen" ref="transactionDetails" :transaction="transaction" />
+      <TransactionDetailsCallOption v-if="countCallOptionLen == 1" ref="transactionDetails" :transaction="transaction" />
+      <TransactionDetailsCallOptionClaim v-else-if="countCallOptionLen == 2" ref="transactionDetails" :transaction="transaction" />
       <TransactionDetails v-else ref="transactionDetails" :transaction="transaction" />
       <section v-if="isMultiPayment(transaction.type, transaction.typeGroup)" class="page-section py-5 md:py-10">
         <MultiPaymentTransactions :transaction="transaction" :page="currentPage" />
@@ -51,10 +52,11 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { mapGetters } from "vuex";
 import { Route } from "vue-router";
-import { ISortParameters, ITransaction, ITransactionCallOption } from "@/interfaces";
+import { ISortParameters, ITransaction, ITransactionCallOption, ITransactionCallOptionClaim } from "@/interfaces";
 import NotFound from "@/components/utils/NotFound.vue";
 import TransactionDetails from "@/components/transaction/Details.vue";
 import TransactionDetailsCallOption from "@/components/transaction/DetailsCallOption.vue";
+import TransactionDetailsCallOptionClaim from "@/components/transaction/DetailsCallOptionClaim.vue";
 import MultiPaymentTransactions from "@/components/tables/MultiPaymentTransactions.vue";
 import TransactionService from "@/services/transaction";
 import { paginationLimit } from "@/constants";
@@ -66,6 +68,7 @@ Component.registerHooks(["beforeRouteEnter", "beforeRouteUpdate"]);
     NotFound,
     TransactionDetails,
     TransactionDetailsCallOption,
+    TransactionDetailsCallOptionClaim
   },
   computed: {
     ...mapGetters("network", ["height"]),
@@ -75,13 +78,14 @@ Component.registerHooks(["beforeRouteEnter", "beforeRouteUpdate"]);
 export default class TransactionPage extends Vue {
   private transaction: ITransaction | null = null;
   private transactionCallOption: ITransactionCallOption | null = null;
+  private transactionCallOptionClaim: ITransactionCallOptionClaim | null = null;
   private transactionNotFound = false;
   private isLoading = false;
   private meta: any | null = null;
   private currentPage = 1;
   private height: number;
   private networkSymbol: string;
-  private countCallOptionLen:boolean = false;
+  private countCallOptionLen:number = 0;
 
   get showPagination() {
     return this.meta && this.meta.pageCount > 1;
@@ -91,12 +95,18 @@ export default class TransactionPage extends Vue {
     try {
       const transaction = await TransactionService.find(to.params.id);
       const transactionCallOptions = await TransactionService.findCallOptionTransaction(to.params.id);
-      next(async(vm: TransactionPage) => {
-        vm.setcountCallOptionLen(await Object.keys(transactionCallOptions).length > 0 ? true : false);        
+      const transactionCallOptionsClaim = await TransactionService.findCallOptionTransactionClaim(to.params.id);
+      next(async(vm: TransactionPage) => {   
         if (await Object.keys(transactionCallOptions).length > 0) {
-        transaction.tx_claim_id = transactionCallOptions[0].tx_claim_id;
-        transaction.call_option_id = transactionCallOptions[0].call_option_id;
-        transaction.statuscallOption = transactionCallOptions[0].status;
+          vm.setcountCallOptionLen(1);    
+          transaction.tx_claim_id = transactionCallOptions[0].tx_claim_id;
+          transaction.call_option_id = transactionCallOptions[0].call_option_id;
+          transaction.statuscallOption = transactionCallOptions[0].status;
+        } else if (await Object.keys(transactionCallOptionsClaim).length > 0) {
+           vm.setcountCallOptionLen(2);
+          transaction.tx_claim_id = transactionCallOptionsClaim[0].tx_claim_id;
+          transaction.call_option_id = transactionCallOptionsClaim[0].call_option_id;
+          transaction.statuscallOption = transactionCallOptionsClaim[0].status;
         }
         vm.setTransaction(transaction);   
         vm.calculateMeta();
@@ -144,7 +154,7 @@ export default class TransactionPage extends Vue {
     }
   }
 
-   private setcountCallOptionLen(result: boolean) {
+   private setcountCallOptionLen(result: number) {
     this.countCallOptionLen = result;
   }
 

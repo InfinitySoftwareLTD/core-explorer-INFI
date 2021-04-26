@@ -5,28 +5,28 @@
         <div class="list-row-border-b">
           <div class="mr-4">{{ "Seller" }}</div>
           <div class="truncate">
-            <LinkWalletCallOption :address="transaction.sender" :trunc="false" tooltip-placement="left" />
+            <LinkWalletCallOptionClaim :address="transaction.sender" :trunc="false" tooltip-placement="left" />
           </div>
         </div>
 
         <div class="list-row-border-b">
           <div class="mr-4">{{ "Buyer" }}</div>
           <div class="truncate">
-            <LinkWalletCallOption :address="transaction.recipient" :trunc="false" tooltip-placement="left" />
+            <LinkWalletCallOptionClaim :address="transaction.recipient" :trunc="false" tooltip-placement="left" />
           </div>
         </div>
 
           <div class="list-row-border-b">
           <div class="mr-4">{{ "Id Call Option" }}</div>
           <div class="truncate">
-            <LinkWalletCallOption :address="transaction.call_option_id" :trunc="false" tooltip-placement="left" />
+            <LinkWalletCallOptionClaim :address="transaction.call_option_id" :trunc="false" tooltip-placement="left" />
           </div>
         </div>
 
         <div class="list-row-border-b">
           <div class="mr-4">{{ $t("TRANSACTION.TYPE") }}</div>
           <div class="truncate">
-            <LinkWalletCallOption
+            <LinkWalletCallOptionClaim
               :address="transaction.recipient"
               :type="transaction.type"
               :asset="transaction.asset"
@@ -147,7 +147,7 @@
           </div>
 
           <div class="list-row-border-b">
-            <div class="mr-4">{{ $t("TRANSACTION.TIMELOCK.CLAIMED") }}</div>
+            <div class="mr-4">{{ 'Execute transaction' }}</div>
             <div class="overflow-hidden break-all">
               <LinkTransaction :id="transaction.asset.claim.lockTransactionId" />
             </div>
@@ -178,7 +178,7 @@
         <div v-if="!isLegacyMultiSignature" class="list-row-border-b">
           <div class="mr-4">{{ $t("TRANSACTION.MULTI_SIGNATURE.ADDRESS") }}</div>
           <div class="truncate">
-            <LinkWalletCallOption
+            <LinkWalletCallOptionClaim
               :address="addressFromMultiSignatureAsset(multiSignatureAsset)"
               :trunc="false"
               tooltip-placement="left"
@@ -189,7 +189,7 @@
           <div class="mr-4">{{ $t("TRANSACTION.MULTI_SIGNATURE.PARTICIPANTS") }}</div>
           <ul>
             <li v-for="publicKey in publicKeysFromMultiSignatureAsset" :key="publicKey" class="mb-1 text-right">
-              <LinkWalletCallOption
+              <LinkWalletCallOptionClaim
                 :address="addressFromPublicKey(publicKey)"
                 :trunc="false"
                 tooltip-placement="left"

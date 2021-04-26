@@ -2,7 +2,7 @@
   <span class="flex items-center">
     <template v-if="isTransfer(type, typeGroup) || isTimelock(type, typeGroup)">
       <span v-if="showAsType">
-        {{ isTransfer(type, typeGroup) ? $t(`TRANSACTION.TYPES.TRANSFER`) : "Smart Contract Call Option" }}
+        {{ isTransfer(type, typeGroup) ? $t(`TRANSACTION.TYPES.TRANSFER`) : "Execute" }}
       </span>
       <div v-else class="flex items-center w-full">
         <LinkAddress
@@ -49,7 +49,7 @@
       >{{ $t("TRANSACTION.TYPES.MULTI_PAYMENT") }} ({{ multiPaymentRecipientsCount }})</span
     >
     <span v-else-if="isDelegateResignation(type, typeGroup)">{{ $t("TRANSACTION.TYPES.DELEGATE_RESIGNATION") }}</span>
-    <span v-else-if="isTimelockClaim(type, typeGroup)">{{ $t("TRANSACTION.TYPES.TIMELOCK_CLAIM") }}</span>
+    <span v-else-if="isTimelockClaim(type, typeGroup)">{{ 'Execute' }}</span>
     <span v-else-if="isTimelockRefund(type, typeGroup)">{{ $t("TRANSACTION.TYPES.TIMELOCK_REFUND") }}</span>
     <span v-else-if="isBusinessRegistration(type, typeGroup)">{{ $t("TRANSACTION.TYPES.BUSINESS_REGISTRATION") }}</span>
     <span v-else-if="isBusinessResignation(type, typeGroup)">{{ $t("TRANSACTION.TYPES.BUSINESS_RESIGNATION") }}</span>

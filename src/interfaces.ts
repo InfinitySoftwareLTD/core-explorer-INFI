@@ -129,6 +129,32 @@ export interface ITransactionCallOption {
   type: number;
 }
 
+export interface ITransactionCallOptionClaim {
+  type: number;
+  tx_id: string;
+  tx_claim_id: string;
+  tx_lock_id: string;
+  call_option_id: string;
+  oco_id: number;
+  coins_per_contract: number;
+  premium: number;
+  strike: number;
+  breakeven: string;
+  amount: number;
+  network_fee: number;
+  sender_address: string;
+  recipient_address: string;
+  buyer_address: string;
+  seller_address: string;
+  total_amount: number;
+  memo: string;
+  timestamp: ITimestamp;
+  api_timestamp: ITimestamp;
+  status: string;
+  expiration: ITimestamp;
+  hash: string;
+}
+
 export interface ISortParameters {
   field: string;
   type: string;
@@ -212,6 +238,9 @@ export interface IApiTransactionCallOptionWrapper {
   data: ITransactionCallOption;
 }
 
+export interface IApiTransactionCallOptionClaimWrapper {
+  data: ITransactionCallOptionClaim;
+}
 export interface IApiTransactionWrapper {
   data: ITransaction;
 }

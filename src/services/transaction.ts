@@ -5,7 +5,9 @@ import {
   ITransaction,
   ITransactionSearchParams,
   ITransactionCallOption,
+  ITransactionCallOptionClaim,
   IApiTransactionCallOptionWrapper,
+  IApiTransactionCallOptionClaimWrapper,
 } from "../interfaces";
 import { paginationLimit } from "@/constants";
 import { Sanitizer } from "@/utils/Sanitizer";
@@ -26,7 +28,6 @@ const sanitizeVendorField = (transaction: ITransaction) => {
 
   return transaction;
 };
-
 
 class TransactionService {
   public async latest(
@@ -246,7 +247,17 @@ class TransactionService {
       `transactions/call-options/${id}`
     )) as IApiTransactionCallOptionWrapper;
 
-      return response.data;
+    return response.data;
+  }
+
+  public async findCallOptionTransactionClaim(
+    id: string
+  ): Promise<ITransactionCallOptionClaim> {
+    const response = (await ApiService.getCallTransaction(
+      `transactions/call-options/get/claim/${id}`
+    )) as IApiTransactionCallOptionClaimWrapper;
+
+    return response.data;
   }
 }
 
