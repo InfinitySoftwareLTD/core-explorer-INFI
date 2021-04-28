@@ -33,7 +33,6 @@ class BlockchainService {
               ? "0"
               : Math.floor(Number(wallet.data.balance));
           finalBalance += Math.floor(Number(sbalance)); // jelmar change
-          console.log(finalBalance);
         } catch (error) {}
       }
       return finalBalance;

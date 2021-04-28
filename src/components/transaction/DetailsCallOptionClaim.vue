@@ -3,23 +3,30 @@
     <section class="page-section py-5 md:py-10 mb-5">
       <div class="px-5 sm:px-10">
         <div class="list-row-border-b">
-          <div class="mr-4">{{ $t("TRANSACTION.SENDER") }}</div>
+          <div class="mr-4">{{ "Seller" }}</div>
           <div class="truncate">
-            <LinkWallet :address="transaction.sender" :trunc="false" tooltip-placement="left" />
+            <LinkWalletCallOptionClaim :address="transaction.sender" :trunc="false" tooltip-placement="left" />
           </div>
         </div>
 
         <div class="list-row-border-b">
-          <div class="mr-4">{{ $t("TRANSACTION.RECIPIENT") }}</div>
+          <div class="mr-4">{{ "Buyer" }}</div>
           <div class="truncate">
-            <LinkWallet :address="transaction.recipient" :trunc="false" tooltip-placement="left" />
+            <LinkWalletCallOptionClaim :address="transaction.recipient" :trunc="false" tooltip-placement="left" />
+          </div>
+        </div>
+
+          <div class="list-row-border-b">
+          <div class="mr-4">{{ "Id Call Option" }}</div>
+          <div class="truncate">
+            <LinkWalletCallOptionClaim :address="transaction.call_option_id" :trunc="false" tooltip-placement="left" />
           </div>
         </div>
 
         <div class="list-row-border-b">
           <div class="mr-4">{{ $t("TRANSACTION.TYPE") }}</div>
           <div class="truncate">
-            <LinkWallet
+            <LinkWalletCallOptionClaim
               :address="transaction.recipient"
               :type="transaction.type"
               :asset="transaction.asset"
@@ -115,14 +122,22 @@
               {{ transaction.asset.lock.expiration.value }}
             </div>
           </div>
-
-          <div class="list-row-border-b-no-wrap">
-            <div class="mr-4">{{ $t("TRANSACTION.TIMELOCK.STATUS") }}</div>
-            <div v-if="timelockLink">
-              <LinkTransaction :id="timelockLink">{{ timelockStatus }}</LinkTransaction>
-            </div>
-            <div v-else>{{ timelockStatus }}</div>
+        </div>
+        <div v-if="transaction.statuscallOption" class="list-row-border-b">
+          <div class="mr-4">{{ "Status" }}</div>
+          <div class="truncate">
+            {{ transaction.statuscallOption == null ? '' : transaction.statuscallOption }}
           </div>
+        </div>
+          <div class="list-row-border-b">
+          <div class="mr-4">{{ "Tx Id Executed" }}</div>
+           <div v-if="transaction.tx_claim_id">
+              <LinkTransaction :id="transaction.tx_claim_id ">{{ transaction.tx_claim_id  }}</LinkTransaction>
+            </div>
+            <div v-else>{{ '' }}</div>
+          <!-- <div class="truncate">
+            {{ transaction.tx_claim_id == null ? '' : transaction.tx_claim_id }}
+          </div> -->
         </div>
 
         <div v-if="isTimelockClaim(transaction.type, transaction.typeGroup)">
@@ -132,7 +147,7 @@
           </div>
 
           <div class="list-row-border-b">
-            <div class="mr-4">{{ $t("TRANSACTION.TIMELOCK.CLAIMED") }}</div>
+            <div class="mr-4">{{ 'Execute transaction' }}</div>
             <div class="overflow-hidden break-all">
               <LinkTransaction :id="transaction.asset.claim.lockTransactionId" />
             </div>
@@ -163,7 +178,7 @@
         <div v-if="!isLegacyMultiSignature" class="list-row-border-b">
           <div class="mr-4">{{ $t("TRANSACTION.MULTI_SIGNATURE.ADDRESS") }}</div>
           <div class="truncate">
-            <LinkWallet
+            <LinkWalletCallOptionClaim
               :address="addressFromMultiSignatureAsset(multiSignatureAsset)"
               :trunc="false"
               tooltip-placement="left"
@@ -174,7 +189,7 @@
           <div class="mr-4">{{ $t("TRANSACTION.MULTI_SIGNATURE.PARTICIPANTS") }}</div>
           <ul>
             <li v-for="publicKey in publicKeysFromMultiSignatureAsset" :key="publicKey" class="mb-1 text-right">
-              <LinkWallet
+              <LinkWalletCallOptionClaim
                 :address="addressFromPublicKey(publicKey)"
                 :trunc="false"
                 tooltip-placement="left"

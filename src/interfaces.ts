@@ -98,6 +98,61 @@ export interface ITransaction {
   price?: number | null;
   nonce?: string;
   lockStatus?: number;
+  tx_claim_id: number;
+  call_option_id: string;
+  statuscallOption: string;
+}
+
+export interface ITransactionCallOption {
+  id: string;
+  amount: number;
+  api_timestamp: ITimestamp;
+  breakeven: string;
+  buyer_address: string;
+  call_option_id: string;
+  coins_per_contract: number;
+  expiration: ITimestamp;
+  hash: string;
+  memo: string;
+  network_fee: string;
+  oco_id: number;
+  premium: number;
+  recipient_address: string;
+  seller_address: string;
+  sender_address: string;
+  status: string;
+  strike: number;
+  timestamp: ITimestamp;
+  total_amount: number;
+  tx_claim_id: number;
+  tx_lock_id: string;
+  type: number;
+}
+
+export interface ITransactionCallOptionClaim {
+  type: number;
+  tx_id: string;
+  tx_claim_id: string;
+  tx_lock_id: string;
+  call_option_id: string;
+  oco_id: number;
+  coins_per_contract: number;
+  premium: number;
+  strike: number;
+  breakeven: string;
+  amount: number;
+  network_fee: number;
+  sender_address: string;
+  recipient_address: string;
+  buyer_address: string;
+  seller_address: string;
+  total_amount: number;
+  memo: string;
+  timestamp: ITimestamp;
+  api_timestamp: ITimestamp;
+  status: string;
+  expiration: ITimestamp;
+  hash: string;
 }
 
 export interface ISortParameters {
@@ -179,6 +234,13 @@ export interface IApiLocksWrapper {
   meta: IMeta;
 }
 
+export interface IApiTransactionCallOptionWrapper {
+  data: ITransactionCallOption;
+}
+
+export interface IApiTransactionCallOptionClaimWrapper {
+  data: ITransactionCallOptionClaim;
+}
 export interface IApiTransactionWrapper {
   data: ITransaction;
 }

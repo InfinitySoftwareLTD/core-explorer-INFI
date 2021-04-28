@@ -71,6 +71,7 @@ export default class LatestTransactions extends Vue {
     const { data } = await TransactionService.filterByType(1, this.transactionType, this.transactionGroup);
 
     this.transactions = data.map((transaction: ITransaction) => ({ ...transaction, price: null }));
+    
   }
 
   private onSortChange(params: ISortParameters) {

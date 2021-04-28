@@ -16,6 +16,8 @@ Vue.component("TransactionAmount", require("@/components/utils/TransactionAmount
 Vue.component("LinkBlock", require("@/components/links/LinkBlock").default);
 Vue.component("LinkTransaction", require("@/components/links/LinkTransaction").default);
 Vue.component("LinkWallet", require("@/components/links/LinkWallet").default);
+Vue.component("LinkWalletCallOption", require("@/components/links/LinkWalletCallOption").default);
+Vue.component("LinkWalletCallOptionClaim", require("@/components/links/LinkWalletCallOptionClaim").default);
 
 // Tables
 Vue.component("TableDelegates", require("@/components/tables/DelegateMonitor").default);

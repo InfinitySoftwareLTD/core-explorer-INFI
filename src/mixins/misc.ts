@@ -54,6 +54,11 @@ export default {
         .format("L LTS");
     },
 
+     readableTimestampFromEpochNewFormat(time: number): string {
+      return moment.unix(time).local().format("LL LTS");
+    },
+
+
     calculateMultipaymentAmount(transaction: ITransaction, address?: string, type = "all"): BigNumber {
       if (transaction.asset && transaction.asset.payments) {
         return transaction.asset.payments.reduce(
