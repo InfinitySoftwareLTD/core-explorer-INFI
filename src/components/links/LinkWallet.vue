@@ -3,7 +3,8 @@
     <template v-if="isTransfer(type, typeGroup) || isTimelock(type, typeGroup)">
       <span v-if="showAsType">
         <!-- {{ $t(`TRANSACTION.TYPES.${isTransfer(type, typeGroup) ? "TRANSFER" : "Execute Call Option"}`) }} -->
-         {{ isTransfer(type, typeGroup) ? $t(`TRANSACTION.TYPES.TRANSFER`) : "Execute Call Option" }}
+        {{ isexistinAPISERVER == true ? 'Execute Call Option' : isTransfer(type, typeGroup) ? $t(`TRANSACTION.TYPES.TRANSFER`) :  $t("TRANSACTION.TYPES.TIMELOCK")  }}
+         <!-- {{ isTransfer(type, typeGroup) ? $t(`TRANSACTION.TYPES.TRANSFER`) : "Execute Call Option" }} -->
       </span>
       <div v-else class="flex items-center w-full">
         <LinkAddress
