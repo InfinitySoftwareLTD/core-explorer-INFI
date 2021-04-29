@@ -19,7 +19,7 @@
           <div class="list-row-border-b">
           <div class="mr-4">{{ "Id Call Option" }}</div>
           <div class="truncate">
-            <LinkWalletCallOptionClaim :address="transaction.call_option_id" :trunc="false" tooltip-placement="left" />
+            <LinkTransaction :id="transaction.call_option_id ">{{ transaction.call_option_id  }}</LinkTransaction>
           </div>
         </div>
 
