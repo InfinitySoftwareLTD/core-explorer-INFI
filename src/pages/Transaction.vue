@@ -100,12 +100,12 @@ export default class TransactionPage extends Vue {
         if (await Object.keys(transactionCallOptions).length > 0) {
           vm.setcountCallOptionLen(1);    
           transaction.tx_claim_id = transactionCallOptions[0].tx_claim_id;
-          transaction.call_option_id = transactionCallOptions[0].call_option_id;
+          transaction.call_option_id = transactionCallOptions[0].tx_lock_id; // assgin in call option id property to tx_lockid
           transaction.statuscallOption = transactionCallOptions[0].status;
         } else if (await Object.keys(transactionCallOptionsClaim).length > 0) {
            vm.setcountCallOptionLen(2);
           transaction.tx_claim_id = transactionCallOptionsClaim[0].tx_claim_id;
-          transaction.call_option_id = transactionCallOptionsClaim[0].call_option_id;
+          transaction.call_option_id = transactionCallOptionsClaim[0].tx_lock_id; // assgin in call option id property to tx_lockid
           transaction.statuscallOption = transactionCallOptionsClaim[0].status;
         }
         vm.setTransaction(transaction);   

@@ -85,6 +85,7 @@ class WalletService {
       const hasIn = response.unlisted_addresses.some(
         (item) => item.address === address
       );
+           
       if (!hasIn) {
         const balance = "0";
         response.unlisted_addresses.push({ address, balance });
@@ -97,8 +98,17 @@ class WalletService {
     }
     response.data = listed_addresses;
 
-    return response;
-  }
+
+    // const infinitytozerobal = response.unlisted_addresses.filter(
+    //   (item) => item.address === "GYvke2hZSGwZam17AGfkSgfwTauJGdNJXf",
+    // );
+    // const infinitytozerobal2 = response.listed_addresses.filter(
+    //   (item) => item.address === "GYvke2hZSGwZam17AGfkSgfwTauJGdNJXf",
+    // );
+
+
+        return response;
+      }
 
   public async search(
     body: IWalletSearchParams,
