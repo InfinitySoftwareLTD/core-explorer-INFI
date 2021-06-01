@@ -134,6 +134,8 @@ export default class TopWallets extends Vue {
   }
 
   private setUnlistedAddresses(wallets: IWallet[]) {
+    console.log("wallet ni mar", wallets);
+    
     this.unlistedwallets = wallets;
   }
 
