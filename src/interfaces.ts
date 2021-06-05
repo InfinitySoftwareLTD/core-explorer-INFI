@@ -183,6 +183,7 @@ export interface IApiResponse {
   data?: any[] | any;
   hasUnlisted?: string;
   unlisted_addresses?: any[] | any;
+  unlisted_addresses2?: any[] | any;
 }
 
 export interface IApiBlockWrapper {

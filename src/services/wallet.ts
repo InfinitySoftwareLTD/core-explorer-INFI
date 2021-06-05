@@ -48,13 +48,16 @@ class WalletService {
   // }
   public async top(page = 1, limit: number = paginationLimit) {
     //change jelmar
+    const response2 = await ApiService.get("wallets/top");
+
     const response = await ApiService.get("wallets/top", {
       params: {
         page,
         limit,
       },
     });
-
+    console.log("res2", response2);
+    
     let serveralias: any = [];
     const server = await store.getters["network/alias"];
     const { testnet, devnet, mainnet } = await ApiService.getUnlisted();
@@ -69,12 +72,14 @@ class WalletService {
 
     let unlistedCount = 0;
     response.unlisted_addresses = [];
+    // response2.unlisted_addresses2 = [];
     const listed_addresses = [];
     for (let i = 0; i < response.data.length; i++) {
       const singlewallet = response.data[i];
       const walletAddress = singlewallet.address;
       if (unlisted_add_array.includes(walletAddress)) {
         response.unlisted_addresses.push(response.data[i]);
+        // response2.unlisted_addresses2.push(response2.data[i]);
         unlistedCount++;
       } else {
         listed_addresses.push(response.data[i]);
@@ -85,30 +90,29 @@ class WalletService {
       const hasIn = response.unlisted_addresses.some(
         (item) => item.address === address
       );
+      const hasIn2 = response2.unlisted_addresses2.some(
+        (item) => item.address === address
+      );
            
       if (!hasIn) {
         const balance = "0";
         response.unlisted_addresses.push({ address, balance });
         unlistedCount++;
       }
+      // if (!hasIn2) {
+      //   const balance = "0";
+      //   response2.unlisted_addresses2.push({ address, balance });
+      // }
     }
 
     if (unlistedCount > 0) {
       response.hasUnlisted = "1";
     }
-    response.data = listed_addresses;
-
-
-    // const infinitytozerobal = response.unlisted_addresses.filter(
-    //   (item) => item.address === "GYvke2hZSGwZam17AGfkSgfwTauJGdNJXf",
-    // );
-    // const infinitytozerobal2 = response.listed_addresses.filter(
-    //   (item) => item.address === "GYvke2hZSGwZam17AGfkSgfwTauJGdNJXf",
-    // );
-
-
-        return response;
-      }
+      response.data = listed_addresses;
+      // response.unlisted_addresses2 = await response2.unlisted_addresses2
+      
+     return response;
+    }
 
   public async search(
     body: IWalletSearchParams,
