@@ -48,7 +48,7 @@ class WalletService {
   // }
   public async top(page = 1, limit: number = paginationLimit) {
     //change jelmar
-    const response2 = await ApiService.get("wallets/top");
+    // const response2 = await ApiService.get("wallets/top");
 
     const response = await ApiService.get("wallets/top", {
       params: {
@@ -56,7 +56,7 @@ class WalletService {
         limit,
       },
     });
-    console.log("res2", response2);
+    // console.log("res2", response2);
     
     let serveralias: any = [];
     const server = await store.getters["network/alias"];
@@ -90,9 +90,9 @@ class WalletService {
       const hasIn = response.unlisted_addresses.some(
         (item) => item.address === address
       );
-      const hasIn2 = response2.unlisted_addresses2.some(
-        (item) => item.address === address
-      );
+      // const hasIn2 = response2.unlisted_addresses2.some(
+      //   (item) => item.address === address
+      // );
            
       if (!hasIn) {
         const balance = "0";
