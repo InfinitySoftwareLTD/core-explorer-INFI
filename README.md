@@ -28,6 +28,7 @@ yarn install
 
 ```bash
 yarn build:mainnet
+npx browserslist@latest --update-db
 pm2 start explorer
 ```
 
