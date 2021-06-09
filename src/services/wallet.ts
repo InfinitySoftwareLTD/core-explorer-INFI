@@ -48,7 +48,7 @@ class WalletService {
   // }
   public async top(page = 1, limit: number = paginationLimit) {
     //change jelmar
-    // const response2 = await ApiService.get("wallets/top");
+    const response2 = await ApiService.get("wallets/top");
 
     const response = await ApiService.get("wallets/top", {
       params: {
@@ -56,7 +56,6 @@ class WalletService {
         limit,
       },
     });
-    // console.log("res2", response2);
     
     let serveralias: any = [];
     const server = await store.getters["network/alias"];
@@ -69,17 +68,15 @@ class WalletService {
       const address = singleUnlisted;
       unlisted_add_array.push(address);
     }
-
+    //response
     let unlistedCount = 0;
     response.unlisted_addresses = [];
-    // response2.unlisted_addresses2 = [];
     const listed_addresses = [];
     for (let i = 0; i < response.data.length; i++) {
       const singlewallet = response.data[i];
       const walletAddress = singlewallet.address;
       if (unlisted_add_array.includes(walletAddress)) {
         response.unlisted_addresses.push(response.data[i]);
-        // response2.unlisted_addresses2.push(response2.data[i]);
         unlistedCount++;
       } else {
         listed_addresses.push(response.data[i]);
@@ -90,26 +87,42 @@ class WalletService {
       const hasIn = response.unlisted_addresses.some(
         (item) => item.address === address
       );
-      // const hasIn2 = response2.unlisted_addresses2.some(
-      //   (item) => item.address === address
-      // );
-           
-      if (!hasIn) {
+       if (!hasIn) {
         const balance = "0";
         response.unlisted_addresses.push({ address, balance });
         unlistedCount++;
       }
-      // if (!hasIn2) {
-      //   const balance = "0";
-      //   response2.unlisted_addresses2.push({ address, balance });
-      // }
     }
+
+    // start response2
+    response2.unlisted_addresses = [];
+    for (let i = 0; i < response2.data.length; i++) {
+      const singlewallet = response2.data[i];
+      const walletAddress = singlewallet.address;
+      if (unlisted_add_array.includes(walletAddress)) {
+        response2.unlisted_addresses.push(response2.data[i]);
+        unlistedCount++;
+      }
+    }
+    for (const singleUnlisted of serveralias) {
+      const address = singleUnlisted;
+      const hasIn2 = response2.unlisted_addresses.some(
+        (item) => item.address === address
+      );
+       if (!hasIn2) {
+        const balance = "0";
+        response2.unlisted_addresses.push({ address, balance });
+        unlistedCount++;
+      }
+    }
+    // end response2
+    
 
     if (unlistedCount > 0) {
       response.hasUnlisted = "1";
     }
       response.data = listed_addresses;
-      // response.unlisted_addresses2 = await response2.unlisted_addresses2
+      response.unlisted_addresses2 = await response2.unlisted_addresses
       
      return response;
     }

@@ -109,6 +109,7 @@ module.exports = {
       "theme-input-field-border-hover": "var(--theme-input-field-border-hover)",
 
       "theme-text-thead": "var(--color-theme-text-thead)",
+      "theme-text-address": "var(--color-theme-text-address)",
 
       "status-forging": "#40a130",
       "status-not-forging": "#e23a3e",

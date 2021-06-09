@@ -9,7 +9,7 @@
           {{ $t("BLOCK.ID") }}
         </div>
         <div class="flex">
-          <div class="text-xl text-white semibold truncate">
+          <div class="text-xl text-theme-text-address semibold truncate">
             <span v-tooltip="block.id" class="mr-2">
               {{ block.id }}
             </span>

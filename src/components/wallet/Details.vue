@@ -37,7 +37,7 @@
           />
         </div>
         <div class="flex">
-          <div class="text-lg text-white semibold truncate">
+          <div class="text-lg text-theme-text-address semibold truncate">
             <span class="mr-2">{{ wallet.address }}</span>
           </div>
           <Clipboard v-if="wallet.address" :value="wallet.address" />
@@ -49,7 +49,7 @@
           {{ $t("WALLET.PUBLIC_KEY") }}
         </div>
         <div class="flex">
-          <div class="text-lg text-white semibold truncate mr-2">
+          <div class="text-lg text-theme-text-address semibold truncate mr-2">
             <span>{{ wallet.publicKey }}</span>
           </div>
           <Clipboard v-if="wallet.publicKey" :value="wallet.publicKey" />
@@ -60,7 +60,7 @@
         <div class="text-grey mb-2">
           {{ $t("WALLET.BALANCE", { token: networkToken() }) }}
         </div>
-        <div class="text-lg text-white semibold">
+        <div class="text-lg text-theme-text-address semibold">
           <span v-tooltip="showBalanceTooltip ? readableCurrency(wallet.balance) : ''">
             {{ readableCrypto(wallet.balance, false) }}
           </span>
@@ -139,7 +139,7 @@
             <div v-if="name" class="text-white semibold flex">
               {{ name }}
             </div>
-            <div class="text-white flex">
+            <div class="text-theme-text-address flex">
               <span class="mr-2">{{ truncate(wallet.address) }}</span>
               <Clipboard v-if="wallet.address" :value="wallet.address" />
             </div>
@@ -148,7 +148,7 @@
             <div class="text-grey mb-2">
               {{ $t("WALLET.PUBLIC_KEY") }}
             </div>
-            <div class="text-white flex">
+            <div class="text-theme-text-address flex">
               <span class="mr-2">{{ truncate(wallet.publicKey) }}</span>
               <Clipboard v-if="wallet.publicKey" :value="wallet.publicKey" />
             </div>
@@ -162,7 +162,7 @@
             <div class="text-grey mb-2">
               {{ $t("WALLET.BALANCE", { token: networkToken() }) }}
             </div>
-            <div class="text-white">
+            <div class="text-theme-text-address">
               <span
                 v-tooltip="{
                   trigger: 'hover click',
@@ -184,7 +184,7 @@
                 trigger: 'hover click',
                 content: readableCurrency(wallet.lockedBalance),
               }"
-              class="text-white"
+              class="text-theme-text-address"
             >
               {{ readableCrypto(wallet.lockedBalance, false) }}
             </span>

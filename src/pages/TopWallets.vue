@@ -76,7 +76,7 @@ export default class TopWallets extends Vue {
       next((vm: TopWallets) => {
         vm.currentPage = Number(to.params.page);
         vm.setWallets(data);
-        vm.setUnlistedAddresses(unlisted_addresses);
+        vm.setUnlistedAddresses(unlisted_addresses2);
         vm.setMeta(meta);
         vm.setUnlisted(hasUnlisted);
       });
@@ -96,7 +96,7 @@ export default class TopWallets extends Vue {
 
       this.currentPage = Number(to.params.page);
       this.setWallets(data);
-      this.setUnlistedAddresses(unlisted_addresses);
+      this.setUnlistedAddresses(unlisted_addresses2);
       this.setMeta(meta);
       this.setUnlisted(hasUnlisted);
       next();

@@ -1,4 +1,5 @@
 .theme-light {
+  --color-theme-text-address:#585a68 ; /* jelmarchange #172130 */
   --color-theme-text-thead: #545768; /* jelmarchange */
   --color-theme-table-row-sticky: #fff;
   --color-theme-accents: #20222e;
@@ -47,6 +48,7 @@ p.mb-4 {
 }
 
 .theme-dark {
+  --color-theme-text-address: #fff; /* jelmarchange */
   --color-theme-text-thead: #a1a2a6;
   --color-theme-table-row-sticky: #25262c;
   --color-theme-accents: #151515;
