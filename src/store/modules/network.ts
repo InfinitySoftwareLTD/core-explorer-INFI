@@ -40,6 +40,7 @@ const actions: ActionTree<INetworkState, {}> = {
       type: types.SET_NETWORK_SERVER,
       value,
     });
+
   },
   setNethash: ({ commit }, value) => {
     commit({

@@ -27,7 +27,7 @@
               {{ $t("TRANSACTION.ID") }}
             </div>
             <div class="flex">
-              <div class="text-xl text-white semibold truncate">
+              <div class="text-xl text-theme-text-address semibold truncate">
                 <span class="mr-2">{{ transaction.id }}</span>
               </div>
               <Clipboard v-if="transaction.id" :value="transaction.id" />
