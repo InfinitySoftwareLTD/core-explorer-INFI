@@ -3,7 +3,7 @@
     <div class="text-grey mb-2 min-w-0">
       {{ $t("PAGES.DELEGATE_MONITOR.HEADER.TOTAL_FORGED", { token: networkToken() }) }}
     </div>
-    <div class="text-lg text-white truncate">
+    <div class="text-lg text-theme-text-address truncate">
       {{ readableCrypto(totalForged, false) }}
     </div>
   </div>
