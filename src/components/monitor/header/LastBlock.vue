@@ -13,7 +13,7 @@
       <div class="text-grey mb-2 min-w-0">
         {{ $t("PAGES.DELEGATE_MONITOR.HEADER.FORGED") }}
       </div>
-      <div class="text-lg text-white truncate">
+      <div class="text-lg text-theme-text-address truncate">
         <span v-if="block && block.forged">
           {{ readableCrypto(block.forged.total) }}
           {{ $tc("PAGES.DELEGATE_MONITOR.HEADER.TX_COUNT", block.transactions, { count: block.transactions }) }}

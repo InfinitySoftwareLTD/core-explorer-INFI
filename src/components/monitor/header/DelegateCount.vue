@@ -7,7 +7,7 @@
       <div class="text-grey mb-2">
         {{ $t("COMMON.DELEGATES") }}
       </div>
-      <div class="text-lg text-white semibold truncate">
+      <div class="text-lg text-theme-text-address semibold truncate">
         {{ count }}
       </div>
     </div>

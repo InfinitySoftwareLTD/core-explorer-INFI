@@ -8,6 +8,13 @@
         class="hidden sm:flex"
       >
       <div class="hidden sm:flex items-center text-theme-text-tertiary text-xs px-3 sm:px-8 xl:px-6 py-3 mb-5 md:mb-6 rounded-md bg-stat-background">
+        <div class="pr-6" v-if="redirect">   
+           <div v-tooltip="'Switch to HEDGE'" class="text-grey text-xs">
+               <a class="text-white" :href="baseurl" > 
+                 <SvgIcon name="back-arrow-hedge2" view-box="0 0 16 16" :href="baseurl" />
+               </a>
+            </div>
+        </div>
         <div class="pr-6">{{ $t("COMMON.HEIGHT") }}: {{ readableNumber(height) }}</div>
         <div class="pr-6">{{ $t("HEADER.NETWORK") }}: {{ $t(`HEADER.${alias.replace(" ", "_").toUpperCase()}`) }}</div>
         <!-- <div class="pr-6">
@@ -24,6 +31,13 @@
     <div
       class="sm:hidden flex items-center justify-between text-theme-text-tertiary text-xs px-5 sm:px-8 xl:px-6 py-3 bg-stat-background"
     >
+      <div class="mr-2" v-if="redirect">
+         <div v-tooltip="'Switch to HEDGE'" class="text-grey text-xs">
+               <a class="text-white" :href="baseurl" > 
+                 <SvgIcon name="back-arrow-hedge2" view-box="0 0 20 20" :href="baseurl" />
+               </a>
+          </div>
+      </div>
       <div class="mr-2">
         <span>{{ $t("COMMON.HEIGHT") }}:</span>
         <span class="block md:inline-block">{{ readableNumber(height) }}</span>
@@ -68,9 +82,20 @@ export default class ContentHeader extends Vue {
   private symbol: string;
   private isListed: boolean;
   private token: string;
+  public baseurl: string = "";
+  public redirect: boolean = false;
+
+  created() {
+    const { fullPath, name } = this.$route;
+    this.baseurl = `https://explorer.hedge.infinitysolutions.io/#${fullPath}`;
+    if(name === "home" || name === "wallet" || name === "top-wallets" || name === "delegate-monitor"){
+        this.redirect = true;
+    } 
+  }
 
   get showMarketCap() {
     return this.isListed && this.token !== this.name;
   }
+
 }
 </script>

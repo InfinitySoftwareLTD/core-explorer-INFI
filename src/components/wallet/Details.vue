@@ -81,7 +81,7 @@
                 }
               : ''
           "
-          class="text-lg text-white semibold"
+          class="text-lg text-theme-text-address semibold"
         >
           {{ readableCrypto(wallet.lockedBalance, false) }}
         </span>
