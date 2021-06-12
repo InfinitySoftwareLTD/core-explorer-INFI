@@ -1,7 +1,7 @@
 {
   "name": "infinity-blockchain-explorer",
-  "version": "1.0.0",
-  "description": "A Blockchain Explorer for ARK using Vue.js and Tailwind CSS",
+  "version": "1.1.2",
+  "description": "A Blockchain Explorer for INFINITY using Vue.js and Tailwind CSS",
   "author": "Infinity developers",
   "private": true,
   "scripts": {
