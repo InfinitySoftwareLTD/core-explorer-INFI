@@ -48,6 +48,7 @@ import moment from "moment";
 export default class App extends Vue {
   public currencyTimer: NodeJS.Timeout;
   public networkTimer: NodeJS.Timeout;
+  public networkTimer2: NodeJS.Timeout;
   public curTimer: NodeJS.Timeout;
   private currencyName: string;
   private stateHasDelegates: boolean;
@@ -256,10 +257,15 @@ export default class App extends Vue {
       this.updateCurrencyRate();
     }, 5 * 60 * 1000);
 
-    this.networkTimer = setInterval(() => {
-      this.updateSupply();
+    this.networkTimer2 = setInterval(() => {
       this.updateHeight();
       this.updateDelegates();
+    }, 400 * 1000);
+
+    this.networkTimer = setInterval(() => {
+      this.updateSupply();
+      // this.updateHeight();
+      // this.updateDelegates(); 
     }, 4 * 1000);
 
     this.curTimer = setInterval(() => {
@@ -271,6 +277,7 @@ export default class App extends Vue {
   public clearTimers() {
     clearInterval(this.currencyTimer);
     clearInterval(this.networkTimer);
+    clearInterval(this.networkTimer2);
     clearInterval(this.curTimer);
   }
 }
