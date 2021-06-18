@@ -10,8 +10,9 @@
       <div class="hidden sm:flex items-center text-theme-text-tertiary text-xs px-3 sm:px-8 xl:px-6 py-3 mb-5 md:mb-6 rounded-md bg-stat-background">
         <div class="pr-6" v-if="redirect">   
            <div v-tooltip="'Switch to HEDGE'" class="text-grey text-xs">
-               <a class="text-white" :href="baseurl" > 
-                 <SvgIcon name="back-arrow-hedge2" view-box="0 0 16 16" :href="baseurl" />
+               <!-- <a class="text-white" :href="baseurl" >  -->
+               <a class="text-white" @click="swithtohedge"> 
+                 <SvgIcon name="back-arrow-hedge2" view-box="0 0 16 16" />
                </a>
             </div>
         </div>
@@ -59,10 +60,21 @@
         <span class="block md:inline-block whitespace-no-wrap">{{ readableCurrency(cur, currentRate ) }}</span>
       </div>
     </div>
+    <Modal v-if="showModal" :close-outside="true" :show-cancel="true" @close="emitClose">
+    <div class="text-justify" style="max-width: 450px;">
+      <p class="text-center semibold text-3xl mb-4">
+        Ooops!
+      </p>
+      <p class="text-center semibold text-1xl mb-4">
+        Sorry, this wallet is not found in HEDGE!
+      </p>
+    </div>
+  </Modal>
   </div>
 </template>
 
 <script lang="ts">
+import ApiService from "@/services/api";
 import { Component, Vue } from "vue-property-decorator";
 import { mapGetters } from "vuex";
 
@@ -83,14 +95,42 @@ export default class ContentHeader extends Vue {
   private isListed: boolean;
   private token: string;
   public baseurl: string = "";
+  public paths: string = "";
   public redirect: boolean = false;
+  public routeName: string = "";
+  public showModal: boolean = false;
+
 
   created() {
     const { fullPath, name } = this.$route;
+    this.paths = fullPath;
+    this.routeName = name;
     this.baseurl = `https://explorer.hedge.infinitysolutions.io/#${fullPath}`;
     if(name === "home" || name === "wallet" || name === "top-wallets" || name === "delegate-monitor"){
         this.redirect = true;
     } 
+  }
+
+  public async swithtohedge(){
+    if(this.routeName  !== "wallet") {
+       window.location.href = `${this.baseurl}`;
+    } else {
+      try {
+        const result = await ApiService.getWalletHedgeExist(this.paths);
+      if(result.statusCode !== "404"){
+          window.location.href = `${this.baseurl}`;
+      } else {
+           this.showModal = true;
+      }
+      } catch (error) {
+          this.showModal = true;
+      }
+    }
+     
+  }
+
+   public emitClose() {
+      this.showModal = false;
   }
 
   get showMarketCap() {

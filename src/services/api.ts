@@ -14,6 +14,11 @@ class ApiService {
     return response.data;
   }
 
+  public async getWalletHedgeExist(wallet: string): Promise<IApiResponse> {
+    const response = await axios.get(`https://api.hedge.infinitysolutions.io/api${wallet}`);
+    return response;
+  }
+
   public async getUnlisted() {
     //jelmar changed
     const response = await axios.get(

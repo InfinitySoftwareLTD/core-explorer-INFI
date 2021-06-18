@@ -11,6 +11,10 @@ export default {
       return moment.unix(value).local().format("L LTS");
     },
 
+    readableTimestamp2(value: number): string {
+      return moment.unix(value).local().format("DD/MM/YYYY h:mm:ss A");
+    },
+
     readableTimestampAgo(time: number, compareTime: number | undefined): string {
       const momentTime = moment.unix(time).local();
       return typeof compareTime !== "undefined"
