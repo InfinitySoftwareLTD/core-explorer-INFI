@@ -260,7 +260,7 @@ export default class App extends Vue {
     this.networkTimer2 = setInterval(() => {
       this.updateHeight();
       this.updateDelegates();
-    }, 400 * 1000);
+    }, 200 * 1000);
 
     this.networkTimer = setInterval(() => {
       this.updateSupply();
