@@ -1,7 +1,7 @@
 import { ApiService, ForgingService, WalletService, RoundService } from "@/services";
 import { roundFromHeight } from "@/utils";
 import store from "@/store";
-import { IApiDelegateWrapper, IApiDelegatesWrapper, IApiWalletsWrapper, IDelegate } from "../interfaces";
+import { IApiDelegateWrapper, IApiDelegatesWrapper, IApiWalletsWrapper, IDelegate, IApiDelegatesScanWrapper, delegatesScan  } from "../interfaces";
 import { apiLimit, paginationLimit } from "@/constants";
 
 class DelegateService {
@@ -130,6 +130,11 @@ class DelegateService {
       },
     })) as IApiDelegatesWrapper;
 
+    return response;
+  }
+
+  public async scanDelegates(): Promise<delegatesScan> {
+    const response = (await ApiService.getCallTransaction(`v2/delegates`)) as delegatesScan;    
     return response;
   }
 

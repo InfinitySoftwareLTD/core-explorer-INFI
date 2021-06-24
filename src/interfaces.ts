@@ -155,6 +155,18 @@ export interface ITransactionCallOptionClaim {
   hash: string;
 }
 
+export interface delegatesScan {
+  wallet_address: string,
+  beneficiaryRate: string,
+  requiredMinimumBalance: string,
+  maintainMinimumBalance: number,
+  beneficiaryAddress: string,
+  confidenceRate: number,
+  multiPaymentLimit: number,
+  lastUpdate: ITimestamp,
+  rank: number
+}
+
 export interface ISortParameters {
   field: string;
   type: string;
@@ -237,6 +249,9 @@ export interface IApiLocksWrapper {
 
 export interface IApiTransactionCallOptionWrapper {
   data: ITransactionCallOption;
+}
+export interface IApiDelegatesScanWrapper {
+  data: delegatesScan;
 }
 
 export interface IApiTransactionCallOptionClaimWrapper {

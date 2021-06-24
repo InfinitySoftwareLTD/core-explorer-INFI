@@ -18,7 +18,7 @@
 
         <div v-else-if="data.column.field === 'expirationValue'">
           <span v-if="data.row.expirationType === 1">
-            {{ readableTimestamp(data.row.expirationValue) }}
+            {{ readableTimestamp2(data.row.expirationValue) }}
           </span>
           <span v-if="data.row.expirationType === 2">
             <div
