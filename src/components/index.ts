@@ -21,6 +21,7 @@ Vue.component("LinkWalletCallOptionClaim", require("@/components/links/LinkWalle
 
 // Tables
 Vue.component("TableDelegates", require("@/components/tables/DelegateMonitor").default);
+Vue.component("TableScanDelegates", require("@/components/tables/ScanDelegates").default);
 Vue.component("MultiPaymentTransactions", require("@/components/tables/MultiPaymentTransactions").default);
 
 Vue.component("TableBlocksDesktop", require("@/components/tables/Blocks").default);
