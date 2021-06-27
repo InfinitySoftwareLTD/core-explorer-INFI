@@ -1,7 +1,7 @@
 {
   "name": "infinity-blockchain-explorer",
   "version": "1.1.7",
-  "description": "A Blockchain Explorer for HEDGE using Vue.js and Tailwind CSS",
+  "description": "A Blockchain Explorer for INFINITY using Vue.js and Tailwind CSS",
   "author": "Infinity Developers",
   "private": true,
   "scripts": {
