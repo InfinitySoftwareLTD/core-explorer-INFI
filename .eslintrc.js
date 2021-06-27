@@ -29,7 +29,7 @@ module.exports = {
     "no-fallthrough": "off",
     "getter-return": "off",
     "comma-dangle": ["error", "always-multiline"],
-    "allowEmptyCatch": true,
+    "allowEmptyCatch": "warn",
   },
   parserOptions: {
     parser: "@typescript-eslint/parser",
