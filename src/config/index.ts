@@ -6,7 +6,7 @@ export const I18N = {
 export const brand = {
   footer: {
     url: "https://www.infinitysoftware.io",
-    text: "infinity developers",
+    text: "Infinity Developers",
   },
 };
 
