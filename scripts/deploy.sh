@@ -16,6 +16,6 @@ git add -A
 git commit -m 'chore: explorer [ci skip]'
 
 # deploy
-git push -f git@github.com:nfinitySoftwareLTD/core-explorer-INFI.git master:gh-pages
+git push -f git@github.com:infinitySoftwareLTD/core-explorer-INFI.git master:gh-pages
 
 cd -
