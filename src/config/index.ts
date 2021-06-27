@@ -68,7 +68,7 @@ export const socialMedia = [
   },
   {
     name: "instagram",
-    url: "https://www.infinitysoftware.io",
+    url: "https://www.instagram.com/infinity_crypto",
     viewBox: "0 0 14 16",
   },
   {
