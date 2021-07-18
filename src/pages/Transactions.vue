@@ -151,14 +151,12 @@ export default class TransactionsPage extends Vue {
         });
       });
       this.transactions = transactionsw;
-      console.log("naa");
     } else {
       const transactionsw = await transactions.map((transaction: ITransaction) => ({
         ...transaction,
         isExistOnAPI: false,
       }));
       this.transactions = transactionsw;
-      console.log("wala");
     }
   }
 
