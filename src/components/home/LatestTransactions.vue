@@ -68,10 +68,31 @@ export default class LatestTransactions extends Vue {
   }
 
   private async getTransactions() {
+    // const { data } = await TransactionService.filterByType(1, this.transactionType, this.transactionGroup);
+    // this.transactions = data.map((transaction: ITransaction) => ({ ...transaction, price: null }));
     const { data } = await TransactionService.filterByType(1, this.transactionType, this.transactionGroup);
-
-    this.transactions = data.map((transaction: ITransaction) => ({ ...transaction, price: null }));
-    
+    const transactions = await data.map((transaction: ITransaction) => ({ ...transaction, price: null }));
+    const getAllIds = await transactions.map((transaction: ITransaction) => transaction.id);
+    const transactionCallOptionsClaim = await TransactionService.findCallOptionTransactionClaimAll(getAllIds);
+    if (transactionCallOptionsClaim.data) {
+      let transactionsw = [];
+      const finaltransactions = await transactionCallOptionsClaim.data.map(async (transactionr: ITransaction) => {
+        transactionsw = await transactions.map((transaction: ITransaction) => {
+          if ((transaction.id = transactionr.id)) {
+            transaction.isExistOnAPI = true;
+          } else {
+            transaction.isExistOnAPI = false;
+          }
+        });
+      });
+      this.transactions = transactionsw;
+    } else {
+      const transactionsw = await transactions.map((transaction: ITransaction) => ({
+        ...transaction,
+        isExistOnAPI: false,
+      }));
+      this.transactions = transactionsw;
+    }
   }
 
   private onSortChange(params: ISortParameters) {

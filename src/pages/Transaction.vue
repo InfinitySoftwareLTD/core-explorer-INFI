@@ -36,8 +36,16 @@
         </div>
       </section>
 
-      <TransactionDetailsCallOption v-if="countCallOptionLen == 1" ref="transactionDetails" :transaction="transaction" />
-      <TransactionDetailsCallOptionClaim v-else-if="countCallOptionLen == 2" ref="transactionDetails" :transaction="transaction" />
+      <TransactionDetailsCallOption
+        v-if="countCallOptionLen == 1"
+        ref="transactionDetails"
+        :transaction="transaction"
+      />
+      <TransactionDetailsCallOptionClaim
+        v-else-if="countCallOptionLen == 2"
+        ref="transactionDetails"
+        :transaction="transaction"
+      />
       <TransactionDetails v-else ref="transactionDetails" :transaction="transaction" />
       <section v-if="isMultiPayment(transaction.type, transaction.typeGroup)" class="page-section py-5 md:py-10">
         <MultiPaymentTransactions :transaction="transaction" :page="currentPage" />
@@ -68,7 +76,7 @@ Component.registerHooks(["beforeRouteEnter", "beforeRouteUpdate"]);
     NotFound,
     TransactionDetails,
     TransactionDetailsCallOption,
-    TransactionDetailsCallOptionClaim
+    TransactionDetailsCallOptionClaim,
   },
   computed: {
     ...mapGetters("network", ["height"]),
@@ -85,7 +93,7 @@ export default class TransactionPage extends Vue {
   private currentPage = 1;
   private height: number;
   private networkSymbol: string;
-  private countCallOptionLen:number = 0;
+  private countCallOptionLen = 0;
 
   get showPagination() {
     return this.meta && this.meta.pageCount > 1;
@@ -96,19 +104,19 @@ export default class TransactionPage extends Vue {
       const transaction = await TransactionService.find(to.params.id);
       const transactionCallOptions = await TransactionService.findCallOptionTransaction(to.params.id);
       const transactionCallOptionsClaim = await TransactionService.findCallOptionTransactionClaim(to.params.id);
-      next(async(vm: TransactionPage) => {   
-        if (await Object.keys(transactionCallOptions).length > 0) {
-          vm.setcountCallOptionLen(1);    
+      next(async (vm: TransactionPage) => {
+        if ((await Object.keys(transactionCallOptions).length) > 0) {
+          vm.setcountCallOptionLen(1);
           transaction.tx_claim_id = transactionCallOptions[0].tx_claim_id;
           transaction.call_option_id = transactionCallOptions[0].tx_lock_id; // assgin in call option id property to tx_lockid
           transaction.statuscallOption = transactionCallOptions[0].status;
-        } else if (await Object.keys(transactionCallOptionsClaim).length > 0) {
-           vm.setcountCallOptionLen(2);
+        } else if ((await Object.keys(transactionCallOptionsClaim).length) > 0) {
+          vm.setcountCallOptionLen(2);
           transaction.tx_claim_id = transactionCallOptionsClaim[0].tx_claim_id;
           transaction.call_option_id = transactionCallOptionsClaim[0].tx_lock_id; // assgin in call option id property to tx_lockid
           transaction.statuscallOption = transactionCallOptionsClaim[0].status;
         }
-        vm.setTransaction(transaction);   
+        vm.setTransaction(transaction);
         vm.calculateMeta();
       });
     } catch (e) {
@@ -144,7 +152,7 @@ export default class TransactionPage extends Vue {
 
     try {
       const transaction = await TransactionService.find(this.transaction!.id);
-     
+
       this.setTransaction(transaction);
       this.transactionNotFound = false;
     } catch (e) {
@@ -154,7 +162,7 @@ export default class TransactionPage extends Vue {
     }
   }
 
-   private setcountCallOptionLen(result: number) {
+  private setcountCallOptionLen(result: number) {
     this.countCallOptionLen = result;
   }
 
@@ -162,8 +170,8 @@ export default class TransactionPage extends Vue {
     this.transaction = transaction;
   }
 
- private settransactionCallOption(transaction: ITransactionCallOption) {
-    this.transactionCallOption = transaction;   
+  private settransactionCallOption(transaction: ITransactionCallOption) {
+    this.transactionCallOption = transaction;
   }
 
   private onPageChange(page: number) {

@@ -32,6 +32,7 @@
             :type="transaction.type"
             :asset="transaction.asset"
             :type-group="transaction.typeGroup"
+            :isexistonapi="transaction.isExistOnAPI"
           />
         </div>
 

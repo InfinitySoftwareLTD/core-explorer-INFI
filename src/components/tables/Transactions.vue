@@ -34,6 +34,7 @@
             :asset="data.row.asset"
             :type-group="data.row.typeGroup"
             :show-timelock-icon="true"
+            :isexistonapi="data.row.isExistOnAPI"
           />
         </div>
 

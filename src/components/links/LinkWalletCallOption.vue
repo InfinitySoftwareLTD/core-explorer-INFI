@@ -12,7 +12,7 @@
           :tooltip-placement="tooltipPlacement"
           container-class="w-full"
         />
-        <div v-if="isTimelock(type, typeGroup) && showTimelockIcon"> 
+        <div v-if="isTimelock(type, typeGroup) && showTimelockIcon">
           <SvgIcon
             v-tooltip="{
               content: $t('WALLET.TIMELOCK_TRANSACTION'),
