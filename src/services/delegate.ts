@@ -1,7 +1,14 @@
 import { ApiService, ForgingService, WalletService, RoundService } from "@/services";
 import { roundFromHeight } from "@/utils";
 import store from "@/store";
-import { IApiDelegateWrapper, IApiDelegatesWrapper, IApiWalletsWrapper, IDelegate, IApiDelegatesScanWrapper, delegatesScan  } from "../interfaces";
+import {
+  IApiDelegateWrapper,
+  IApiDelegatesWrapper,
+  IApiWalletsWrapper,
+  IDelegate,
+  IApiDelegatesScanWrapper,
+  delegatesScan,
+} from "../interfaces";
 import { apiLimit, paginationLimit } from "@/constants";
 
 class DelegateService {
@@ -62,7 +69,7 @@ class DelegateService {
       1,
       1,
     )) as IApiWalletsWrapper;
-    
+
     return response.meta.totalCount;
   }
 
@@ -134,8 +141,12 @@ class DelegateService {
   }
 
   public async scanDelegates(): Promise<delegatesScan> {
-    const response = (await ApiService.getCallTransaction(`v2/delegates`)) as delegatesScan;    
-    return response;
+    try {
+      const response = (await ApiService.getCallTransaction(`v2/delegates`)) as delegatesScan;
+      return response;
+    } catch (error) {
+      return error;
+    }
   }
 
   public async forged(): Promise<Array<{ delegate: string; forged: number }>> {

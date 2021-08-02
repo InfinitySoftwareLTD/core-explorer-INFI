@@ -130,12 +130,34 @@ export default class TransactionsPage extends Vue {
     }
   }
 
-  private setTransactions(transactions: ITransaction[]) {
-    if (!transactions) {
+  private async setTransactions(transactionsdata: ITransaction[]) {
+    if (!transactionsdata) {
       return;
     }
+    // this.transactions = transactions.map((transaction) => ({ ...transaction, price: null }));
 
-    this.transactions = transactions.map((transaction) => ({ ...transaction, price: null }));
+    const transactions = await transactionsdata.map((transaction: ITransaction) => ({ ...transaction, price: null }));
+    const getAllIds = await transactions.map((transaction: ITransaction) => transaction.id);
+    const transactionCallOptionsClaim = await TransactionService.findCallOptionTransactionClaimAll(getAllIds);
+    if (transactionCallOptionsClaim.data) {
+      let transactionsw = [];
+      const finaltransactions = await transactionCallOptionsClaim.data.map(async (transactionr: ITransaction) => {
+        transactionsw = await transactions.map((transaction: ITransaction) => {
+          if ((transaction.id = transactionr.id)) {
+            transaction.isExistOnAPI = true;
+          } else {
+            transaction.isExistOnAPI = false;
+          }
+        });
+      });
+      this.transactions = transactionsw;
+    } else {
+      const transactionsw = await transactions.map((transaction: ITransaction) => ({
+        ...transaction,
+        isExistOnAPI: false,
+      }));
+      this.transactions = transactionsw;
+    }
   }
 
   private setMeta(meta: any) {

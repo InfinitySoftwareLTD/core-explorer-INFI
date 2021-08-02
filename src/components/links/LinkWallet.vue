@@ -3,8 +3,14 @@
     <template v-if="isTransfer(type, typeGroup) || isTimelock(type, typeGroup)">
       <span v-if="showAsType">
         <!-- {{ $t(`TRANSACTION.TYPES.${isTransfer(type, typeGroup) ? "TRANSFER" : "Execute Call Option"}`) }} -->
-        {{ isexistinAPISERVER == true ? 'Execute Call Option' : isTransfer(type, typeGroup) ? $t(`TRANSACTION.TYPES.TRANSFER`) :  $t("TRANSACTION.TYPES.TIMELOCK")  }}
-         <!-- {{ isTransfer(type, typeGroup) ? $t(`TRANSACTION.TYPES.TRANSFER`) : "Execute Call Option" }} -->
+        {{
+          isexistonapi == true
+            ? "Execute Call Option"
+            : isTransfer(type, typeGroup)
+            ? $t(`TRANSACTION.TYPES.TRANSFER`)
+            : $t("TRANSACTION.TYPES.TIMELOCK")
+        }}
+        <!-- {{ isTransfer(type, typeGroup) ? $t(`TRANSACTION.TYPES.TRANSFER`) : "Execute Call Option" }} -->
       </span>
       <div v-else class="flex items-center w-full">
         <LinkAddress
@@ -14,7 +20,7 @@
           :tooltip-placement="tooltipPlacement"
           container-class="w-full"
         />
-        <div v-if="isTimelock(type, typeGroup) && showTimelockIcon"> 
+        <div v-if="isTimelock(type, typeGroup) && showTimelockIcon">
           <SvgIcon
             v-tooltip="{
               content: $t('WALLET.TIMELOCK_TRANSACTION'),
@@ -51,7 +57,9 @@
       >{{ $t("TRANSACTION.TYPES.MULTI_PAYMENT") }} ({{ multiPaymentRecipientsCount }})</span
     >
     <span v-else-if="isDelegateResignation(type, typeGroup)">{{ $t("TRANSACTION.TYPES.DELEGATE_RESIGNATION") }}</span>
-    <span v-else-if="isTimelockClaim(type, typeGroup)">{{ isexistinAPISERVER == true ? 'Execute Call Option' : $t("TRANSACTION.TYPES.TIMELOCK_CLAIM") }}</span>
+    <span v-else-if="isTimelockClaim(type, typeGroup)">{{
+      isexistonapi == true ? "Execute Call Option" : $t("TRANSACTION.TYPES.TIMELOCK_CLAIM")
+    }}</span>
     <span v-else-if="isTimelockRefund(type, typeGroup)">{{ $t("TRANSACTION.TYPES.TIMELOCK_REFUND") }}</span>
     <span v-else-if="isBusinessRegistration(type, typeGroup)">{{ $t("TRANSACTION.TYPES.BUSINESS_REGISTRATION") }}</span>
     <span v-else-if="isBusinessResignation(type, typeGroup)">{{ $t("TRANSACTION.TYPES.BUSINESS_RESIGNATION") }}</span>
@@ -102,8 +110,8 @@ export default class LinkWallet extends Vue {
   @Prop({ required: false, default: false }) public showTimelockIcon: boolean;
   @Prop({ required: false, default: false }) public showAsType: boolean;
   @Prop({ required: false, default: "" }) public id: string;
+  @Prop({ required: false, default: false }) public isexistonapi: boolean;
   private delegates: IDelegate[];
-  private isexistinAPISERVER: boolean = false;
 
   get getVoteColor(): string {
     return this.isUnvote ? "text-red" : "text-green";
@@ -147,25 +155,28 @@ export default class LinkWallet extends Vue {
   //  get transactionIDExist():Promise<boolean> {
   //    console.log(this.id);
   //    console.log(this.transactionExistInAPIserver(this.id));
-     
+
   //    return false;
   // }
-    public async mounted() {
-      this.transactionExistInAPIserver(this.id);
-    }
+  // public async mounted() {
+  //   this.transactionExistInAPIserver(this.id);
+  // }
 
-   public async transactionExistInAPIserver(id: string): Promise<void> {
-      try {
-      const transactionCallOptionsClaim = await TransactionService.findCallOptionTransactionClaim(id);
-       if (await Object.keys(transactionCallOptionsClaim).length > 0){
-       this.isexistinAPISERVER =  true;
-       } else {
-       this.isexistinAPISERVER =  false;
-       }
-    } catch (e) {
-       this.isexistinAPISERVER =  false;
-    }
-  }
-
+  // public async transactionExistInAPIserver(id: string): Promise<void> {
+  //   this.isexistinAPISERVER = false;
+  //   // if (id === null) {
+  //   // } else {
+  //   //   try {
+  //   //     const transactionCallOptionsClaim = await TransactionService.findCallOptionTransactionClaim(id);
+  //   //     if ((await Object.keys(transactionCallOptionsClaim).length) > 0) {
+  //   //       this.isexistinAPISERVER = true;
+  //   //     } else {
+  //   //       this.isexistinAPISERVER = false;
+  //   //     }
+  //   //   } catch (e) {
+  //   //     this.isexistinAPISERVER = false;
+  //   //   }
+  //   // }
+  // }
 }
 </script>

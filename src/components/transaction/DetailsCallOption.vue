@@ -16,10 +16,10 @@
           </div>
         </div>
 
-          <div class="list-row-border-b">
+        <div class="list-row-border-b">
           <div class="mr-4">{{ "Id Call Option" }}</div>
           <div class="truncate">
-              <LinkTransaction :id="transaction.call_option_id ">{{ transaction.call_option_id  }}</LinkTransaction>
+            <LinkTransaction :id="transaction.call_option_id">{{ transaction.call_option_id }}</LinkTransaction>
           </div>
         </div>
 
@@ -126,15 +126,15 @@
         <div v-if="transaction.statuscallOption" class="list-row-border-b">
           <div class="mr-4">{{ "Status" }}</div>
           <div class="truncate">
-            {{ transaction.statuscallOption == null ? '' : transaction.statuscallOption }}
+            {{ transaction.statuscallOption == null ? "" : transaction.statuscallOption }}
           </div>
         </div>
-          <div class="list-row-border-b">
+        <div class="list-row-border-b">
           <div class="mr-4">{{ "Tx Id Executed" }}</div>
-           <div v-if="transaction.tx_claim_id">
-              <LinkTransaction :id="transaction.tx_claim_id ">{{ transaction.tx_claim_id  }}</LinkTransaction>
-            </div>
-            <div v-else>{{ '' }}</div>
+          <div v-if="transaction.tx_claim_id">
+            <LinkTransaction :id="transaction.tx_claim_id">{{ transaction.tx_claim_id }}</LinkTransaction>
+          </div>
+          <div v-else>{{ "" }}</div>
           <!-- <div class="truncate">
             {{ transaction.tx_claim_id == null ? '' : transaction.tx_claim_id }}
           </div> -->

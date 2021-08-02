@@ -62,6 +62,16 @@ class ApiService {
 
     return response.data;
   }
+
+  public async getCallTransaction2(url: string, data = {}, config: AxiosRequestConfig = {}): Promise<IApiResponse> {
+    const response = await axios.post(`https://smartmarket.infinitysolutions.io/api/${url}`, data, config);
+
+    if (response.data.error) {
+      return Promise.reject(new Error(`Error GET ${url} : ${JSON.stringify(response)}`));
+    }
+
+    return response.data;
+  }
 }
 
 export default new ApiService();

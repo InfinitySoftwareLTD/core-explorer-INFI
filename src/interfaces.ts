@@ -101,6 +101,7 @@ export interface ITransaction {
   tx_claim_id: number;
   call_option_id: string;
   statuscallOption: string;
+  isExistOnAPI: boolean;
 }
 
 export interface ITransactionCallOption {
@@ -156,15 +157,15 @@ export interface ITransactionCallOptionClaim {
 }
 
 export interface delegatesScan {
-  wallet_address: string,
-  beneficiaryRate: string,
-  requiredMinimumBalance: string,
-  maintainMinimumBalance: number,
-  beneficiaryAddress: string,
-  confidenceRate: number,
-  multiPaymentLimit: number,
-  lastUpdate: ITimestamp,
-  rank: number
+  wallet_address: string;
+  beneficiaryRate: string;
+  requiredMinimumBalance: string;
+  maintainMinimumBalance: number;
+  beneficiaryAddress: string;
+  confidenceRate: number;
+  multiPaymentLimit: number;
+  lastUpdate: ITimestamp;
+  rank: number;
 }
 
 export interface ISortParameters {
@@ -196,6 +197,13 @@ export interface IApiResponse {
   hasUnlisted?: string;
   unlisted_addresses?: any[] | any;
   unlisted_addresses2?: any[] | any;
+}
+
+export interface IApiResponseCallOptionAll {
+  error?: string;
+  statusCode?: string;
+  meta?: IMeta;
+  data?: any[] | any;
 }
 
 export interface IApiBlockWrapper {
@@ -257,6 +265,7 @@ export interface IApiDelegatesScanWrapper {
 export interface IApiTransactionCallOptionClaimWrapper {
   data: ITransactionCallOptionClaim;
 }
+
 export interface IApiTransactionWrapper {
   data: ITransaction;
 }

@@ -8,6 +8,7 @@ import {
   ITransactionCallOptionClaim,
   IApiTransactionCallOptionWrapper,
   IApiTransactionCallOptionClaimWrapper,
+  IApiResponseCallOptionAll,
 } from "../interfaces";
 import { paginationLimit } from "@/constants";
 import { Sanitizer } from "@/utils/Sanitizer";
@@ -20,9 +21,7 @@ const sanitizeVendorField = (transaction: ITransaction) => {
     if (sanitizer.isBad(transaction.vendorField)) {
       delete transaction.vendorField;
     } else {
-      transaction.vendorField = sanitizer.apply(
-        emoji.emojify(transaction.vendorField)
-      );
+      transaction.vendorField = sanitizer.apply(emoji.emojify(transaction.vendorField));
     }
   }
 
@@ -30,9 +29,7 @@ const sanitizeVendorField = (transaction: ITransaction) => {
 };
 
 class TransactionService {
-  public async latest(
-    limit: number = paginationLimit
-  ): Promise<ITransaction[]> {
+  public async latest(limit: number = paginationLimit): Promise<ITransaction[]> {
     const response = (await ApiService.get("transactions", {
       params: {
         orderBy: "timestamp:desc",
@@ -46,9 +43,7 @@ class TransactionService {
   }
 
   public async find(id: string): Promise<ITransaction> {
-    const response = (await ApiService.get(
-      `transactions/${id}`
-    )) as IApiTransactionWrapper;
+    const response = (await ApiService.get(`transactions/${id}`)) as IApiTransactionWrapper;
 
     sanitizeVendorField(response.data);
 
@@ -59,7 +54,7 @@ class TransactionService {
     page: number,
     type: number,
     typeGroup?: number,
-    limit: number = paginationLimit
+    limit: number = paginationLimit,
   ): Promise<IApiTransactionsWrapper> {
     const params: any = {
       orderBy: "timestamp:desc",
@@ -87,7 +82,7 @@ class TransactionService {
   public async search(
     body: ITransactionSearchParams,
     page = 1,
-    limit: number = paginationLimit
+    limit: number = paginationLimit,
   ): Promise<IApiTransactionsWrapper> {
     const response = (await ApiService.post("transactions/search", body, {
       params: {
@@ -101,11 +96,7 @@ class TransactionService {
     return response;
   }
 
-  public async byBlock(
-    id: string,
-    page = 1,
-    limit: number = paginationLimit
-  ): Promise<IApiTransactionsWrapper> {
+  public async byBlock(id: string, page = 1, limit: number = paginationLimit): Promise<IApiTransactionsWrapper> {
     const response = (await ApiService.get(`blocks/${id}/transactions`, {
       params: {
         orderBy: "timestamp:desc",
@@ -119,11 +110,7 @@ class TransactionService {
     return response;
   }
 
-  public async allByAddress(
-    address: string,
-    page = 1,
-    limit = paginationLimit
-  ): Promise<IApiTransactionsWrapper> {
+  public async allByAddress(address: string, page = 1, limit = paginationLimit): Promise<IApiTransactionsWrapper> {
     const response = (await ApiService.get(`wallets/${address}/transactions`, {
       params: {
         orderBy: "timestamp:desc",
@@ -140,18 +127,15 @@ class TransactionService {
   public async sentByAddress(
     address: string,
     page = 1,
-    limit: number = paginationLimit
+    limit: number = paginationLimit,
   ): Promise<IApiTransactionsWrapper> {
-    const response = (await ApiService.get(
-      `wallets/${address}/transactions/sent`,
-      {
-        params: {
-          orderBy: "timestamp:desc",
-          page,
-          limit,
-        },
-      }
-    )) as IApiTransactionsWrapper;
+    const response = (await ApiService.get(`wallets/${address}/transactions/sent`, {
+      params: {
+        orderBy: "timestamp:desc",
+        page,
+        limit,
+      },
+    })) as IApiTransactionsWrapper;
 
     response.data.map(sanitizeVendorField);
 
@@ -161,18 +145,15 @@ class TransactionService {
   public async receivedByAddress(
     address: string,
     page = 1,
-    limit: number = paginationLimit
+    limit: number = paginationLimit,
   ): Promise<IApiTransactionsWrapper> {
-    const response = (await ApiService.get(
-      `wallets/${address}/transactions/received`,
-      {
-        params: {
-          orderBy: "timestamp:desc",
-          page,
-          limit,
-        },
-      }
-    )) as IApiTransactionsWrapper;
+    const response = (await ApiService.get(`wallets/${address}/transactions/received`, {
+      params: {
+        orderBy: "timestamp:desc",
+        page,
+        limit,
+      },
+    })) as IApiTransactionsWrapper;
 
     response.data.map(sanitizeVendorField);
 
@@ -182,7 +163,7 @@ class TransactionService {
   public async locksByAddress(
     address: string,
     page = 1,
-    limit: number = paginationLimit
+    limit: number = paginationLimit,
   ): Promise<IApiTransactionsWrapper> {
     const response = (await ApiService.get(`wallets/${address}/locks`, {
       params: {
@@ -200,7 +181,7 @@ class TransactionService {
   public async findUnlockedForLocks(
     transactionIds: string[],
     page = 1,
-    limit: number = paginationLimit
+    limit: number = paginationLimit,
   ): Promise<IApiTransactionsWrapper> {
     const response = (await ApiService.post(`locks/unlocked`, {
       ids: transactionIds,
@@ -240,25 +221,30 @@ class TransactionService {
     return response.meta.totalCount;
   }
 
-  public async findCallOptionTransaction(
-    id: string
-  ): Promise<ITransactionCallOption> {
+  public async findCallOptionTransaction(id: string): Promise<ITransactionCallOption> {
     const response = (await ApiService.getCallTransaction(
-      `transactions/call-options/${id}`
+      `transactions/call-options/${id}`,
     )) as IApiTransactionCallOptionWrapper;
 
     return response.data;
   }
 
-  public async findCallOptionTransactionClaim(
-    id: string
-  ): Promise<ITransactionCallOptionClaim> {
+  public async findCallOptionTransactionClaim(id: string): Promise<ITransactionCallOptionClaim> {
     const response = (await ApiService.getCallTransaction(
-      `transactions/call-options/get/claim/${id}`
+      `transactions/call-options/get/claim/${id}`,
     )) as IApiTransactionCallOptionClaimWrapper;
+
+    return response.data;
+  }
+
+  public async findCallOptionTransactionClaimAll(list: any): Promise<IApiResponseCallOptionAll> {
+    const response = await ApiService.getCallTransaction2(`transactions/call-options/claims/all`, {
+      tx_ids: list,
+    });
 
     return response.data;
   }
 }
 
 export default new TransactionService();
+// "server": "http://161.35.144.147:4003/api",

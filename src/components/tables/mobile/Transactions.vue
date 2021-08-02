@@ -35,6 +35,7 @@
             :asset="transaction.asset"
             :type-group="transaction.typeGroup"
             :show-timelock-icon="true"
+            :isexistonapi="transaction.isExistOnAPI"
           />
         </div>
 
